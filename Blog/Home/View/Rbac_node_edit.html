@@ -1,0 +1,20 @@
+	<include   file="Blog/Home/View/Common/header.html"  title="RBAC_NODE_EDIT" />
+	</head>
+	<body>
+		<form action="{:U(MODULE_NAME.'/Rbac/node_edit')}" method="post" >
+			<table class="table"> 
+				<tr>
+					<td>{$type}_NAME</td>
+					<td><input  name="name" value="{$rest.name}"  /></td>
+				</tr>
+				<tr>
+					<td>{$type}_REMARK</td>
+					<td><input  name="remark"   value="{$rest.remark}" /></td>
+				</tr>
+			</table>
+			<input type='hidden'  value="{$rest.id}" name="pid"  />
+			<input type="hidden" value="{$level}" name="level" />
+			<input  type="submit" value="SUBMIT" name="submit" />
+		</form>
+	</body>
+</html>

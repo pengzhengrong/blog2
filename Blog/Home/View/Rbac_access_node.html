@@ -1,0 +1,59 @@
+<include  file="Blog/Home/View/Common/header.html" />
+		<script type="text/javascript">
+			 $( function(){
+			 	$("input[level=1]").click( function(){
+			 		var inputs = $(this).parents(".modules").find("input");
+			 		$(this).attr("checked") ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+			 	} );
+
+			 	$("input[level=2]").click( function(){
+			 		var inputs = $(this).parents(".action").find("input");
+			 		$(this).attr("checked") ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+			 	} );
+
+			 	$("input[level=1]").click( function(){
+			 		var inputs = $(this).parents(".method").find("input");
+			 		$(this).attr("checked") ? inputs.attr('checked','checked') : inputs.removeAttr('checked');
+			 	} );
+			 });
+		</script>
+	</head>
+	<body>
+	<form action="{:U(MODULE_NAME.'/Rbac/access_add','','')}">
+		<div  class="wrap">
+			<foreach name="rest" item="v">
+				<div class="modules">
+					<p>
+						<input type="checkbox"   name="node_id[]" value="{$v.id}_1"  level="1"
+						 <if  condition='$v["access"]' > checked="checked" </if>  />
+						<strong style="font-size: 20px; color: #333">{$v.name}({$v.remark}) </strong>
+					</p>
+				<foreach name="v.child" item="action" > 
+					<div class="action">
+						<dl>
+						<dt>
+							<input type="checkbox"  name="node_id[]" value="{$action.id}_2" level="2"
+							<if  condition='$action["access"]' > checked="checked" </if> />
+							<strong style="font-size: 16px; color: #888">{$action.name}({$action.remark}) </strong>
+						</dt>
+					<foreach name="action.child" item="method" > 
+						<div class="method">
+						<dd>
+							<input type="checkbox"  name="node_id[]" value="{$method.id}_3" level="3" 
+							<if  condition='$method["access"]' > checked="checked" </if> />
+							{$method.name}({$method.remark})
+						</dd>
+						</div>
+					</foreach>
+					</dl>
+					</div>
+				</foreach>
+				</div>
+			</foreach>
+
+		</div>
+		<input type="hidden" value="{$role_id}" name="role_id" />
+		<input  type="submit" value="SUBMIT"   />
+	</form>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+[ 2016-05-03T23:15:07+08:00 ] 118.198.89.94 /index.php/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:15:08+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000148s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:15:09+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:15:10+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:05+08:00 ] 118.198.89.94 /index.php/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000121s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:06+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000130s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:09+08:00 ] 118.198.89.94 /index.php/Home/Blog/gc.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000256s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:10+08:00 ] 118.198.89.94 /index.php/Home/Attr/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000214s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:10+08:00 ] 118.198.89.94 /index.php/Home/Cat/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000189s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:12+08:00 ] 118.198.89.94 /index.php/Home/Rbac/node.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000157s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:12+08:00 ] 118.198.89.94 /index.php/Home/Rbac/role.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000050s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000298s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:13+08:00 ] 118.198.89.94 /index.php/Home/Rbac/access.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000159s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:13+08:00 ] 118.198.89.94 /index.php/Home/User/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000243s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:15+08:00 ] 118.198.89.94 /index.php/Home/Nav/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000183s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:18+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000145s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:20+08:00 ] 118.198.89.94 /index.php/Home/Blog/add.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000121s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:27+08:00 ] 118.198.89.94 /index.php/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000160s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:16:31+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000147s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:18:05+08:00 ] 118.198.89.94 /index.php/admin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000128s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+
+[ 2016-05-03T23:18:06+08:00 ] 118.198.89.94 /index.php/Home/Blog/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000173s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+

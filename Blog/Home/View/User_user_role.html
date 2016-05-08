@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//Ddiv XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Ddiv/xhtml1-transitional.ddiv">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/public.css?vision=2.0" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/login.js"></script>
+		<script type="text/javascript">
+			$( function(){
+				$('input[level=1]').click( function(){
+				var inputs = $(this).parents('.modules').find('input');
+				$(this).attr('checked')?inputs.attr('checked','checked'):inputs.removeAttr('checked');
+				} );
+				$('input[level=2]').click( function(){
+					var inputs = $(this).parents('.action').find('input');
+					$(this).attr('checked')?inputs.attr('checked','checked'):inputs.removeAttr('checked');
+				} );
+				$('input[level=3]').click( function(){
+					var inputs = $(this).parents('.method').find('input');
+					$(this).attr('checked')?inputs.attr('checked','checked'):inputs.removeAttr('checked');
+				} );	
+			} );
+		</script>
+		{:baiduAccount()}
+	</head>
+	<body>
+		<div class="top"><a href="history.go(-1)" >BACK</a></div>
+		<form action="{:U(MODULE_NAME.'/User/user_role_add','','')}"  method="post">
+		<div  class="wrap">
+			<foreach name="rest" item="v">
+				<div class="modules">
+					<p>
+						<input type="checkbox"   name="role_id[]" value="{$v.id}"  level="1"
+						 <if  condition='$v["access"]' > checked="checked" </if>  />
+						<strong style="font-size: 20px; color: #333">{$v.name}({$v.remark}) </strong>
+					</p>
+				<foreach name="v.child" item="action" > 
+					<div class="action">
+						<dl>
+						<dt>
+							<input type="checkbox"  name="role_id[]" value="{$action.id}" level="2"
+							<if  condition='$action["access"]' > checked="checked" </if> />
+							<strong style="font-size: 16px; color: #888">{$action.name}({$action.remark}) </strong>
+						</dt>
+					<foreach name="action.child" item="method" > 
+						<div class="method">
+						<dd>
+							<input type="checkbox"  name="role_id[]" value="{$method.id}" level="3" 
+							<if  condition='$method["access"]' > checked="checked" </if> />
+							{$method.name}({$method.remark})
+						</dd>
+						</div>
+					</foreach>
+					</dl>
+					</div>
+				</foreach>
+				</div>
+			</foreach>
+		</div>
+		<input type="hidden"  name="user_id" value="{$user_id}"/>
+		<input type="submit" value="SUBMIT"  />
+		</form>
+	</body>
+</html>

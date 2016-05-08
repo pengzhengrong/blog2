@@ -1,0 +1,30 @@
+	<include  file="Blog/Home/View/Common/header.html" title="RBAC_ACCESS" />
+	</head>
+	<body>
+		<div class="top"><a href="{:U(MODULE_NAME.'/Rbac/role_add','','')}" >PUBLISH</a></div>
+		<div >
+			<foreach name="rest" item="v">
+				<div class="modules">
+					<p>
+						<strong style="font-size: 20px; color: #333">{$v.name}({$v.remark}) </strong>
+					</p>
+				<foreach name="v.child" item="action" > 
+					<div class="action">
+					<p>
+						<strong style="font-size: 16px; color: #888">{$action.name}({$action.remark})</strong>
+						<a href="{:U(MODULE_NAME.'/Rbac/access_node',array('id'=>$action['id']) ,'')}">EDIT</a>
+					</p>
+					<foreach name="action.child" item="method" > 
+						<div class="method">
+							{$method.name}({$method.remark})
+							<a href="{:U(MODULE_NAME.'/Rbac/access_node','id='.$method['id'] ,'' )}">EDIT</a>
+						</div>
+					</foreach>
+					</div>
+				</foreach>
+				</div>
+			</foreach>
+
+		</div>
+	</body>
+</html>

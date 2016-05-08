@@ -1,0 +1,19 @@
+<include  file="Blog/Home/View/Common/header.html" />
+	</head>
+	<body>
+		<form action="{:U(MODULE_NAME.'/Rbac/role_add','','')}" method="post" >
+			<table class="table"> 
+				<tr>
+					<td>ROLE_NAME</td>
+					<td><input  name="name"  /></td>
+				</tr>
+				<tr>
+					<td>ROLE_REMARK</td>
+					<td><input  name="remark"  /></td>
+				</tr>
+			</table>
+			<input type='hidden'  value="{$pid}" name="pid"  />
+			<input  type="submit" value="SUBMIT" />
+		</form>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+<include file="Blog/Home/View/Common/header.html" />
+	</head>
+	<body>
+		<div class="top"><a href="{:U(MODULE_NAME.'/Rbac/role_add','','')}" >PUBLISH</a></div>		<div>
+			<foreach name="rest" item="v">
+				<div class="modules">
+					<p>
+						<strong style="font-size: 20px; color: #333">{$v.name}({$v.remark}) </strong>
+						<a href="{:U(MODULE_NAME.'/Rbac/role_add',array('pid'=>$v['id']) ,'')}">[ADD]</a>
+						<a href="{:U(MODULE_NAME.'/Rbac/role_edit',array('id'=>$v['id']) ,'')}">[EDIT]</a>
+					</p>
+				<foreach name="v.child" item="action" > 
+					<div class="action">
+						<p>{$action.name}({$action.remark})
+						<a href="{:U(MODULE_NAME.'/Rbac/role_add',array('pid'=>$action['id']) ,'')}">[ADD]</a>|
+						<a href="{:U(MODULE_NAME.'/Rbac/role_delete','id='.$action['id'] ,'' )}">[DELETE]</a></p>
+					<foreach name="action.child" item="method" > 
+						<div class="method">
+							{$method.name}({$method.remark})
+							<a href="{:U(MODULE_NAME.'/Rbac/role_delete','id='.$method['id'] ,'' )}">[DELETE]</a>
+						</div>
+					</foreach>
+					</div>
+				</foreach>
+				</div>
+			</foreach>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<include file="Blog/Home/View/Common/header.html" />
+</head>
+<body>
+	<div class="top"><a href="{:U(MODULE_NAME.'/Blog/add')}" target="_blank">ADD</a></div>
+	<form action="{:U(MODULE_NAME.'/Blog/'.ACTION_NAME)}"  type="post">
+		<div  class="search_box">
+		<select name='cat_id'>
+		<option value=0>SELECT</option>
+		{:W('Cat/select',array($category,$cat_id))}
+		</select>
+		<input type="submit" value="SEARCH" />
+		</div>
+	</form>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>TITLE</th>
+			<th>CLICK</th>
+			<th>CREATED</th>
+			<th>SORT</th>
+			<th>ATTR</th>
+			<th>CATEGORY</th>
+			<th>OPERATOR</th>
+		</tr>
+		<foreach name="rest" item="v">
+			<tr>
+				<td>{$v.id}</td>
+				<td>{$v.title}</td>
+				<td>{$v.click}</td>
+				<td>{$v.created|date='Y-m-d H:i',###}</td>
+				<td>{$v.sort}</td>
+				<td>
+					<foreach name="v.attr" item="attr">
+						<font color="{$attr.color}">{$attr.title}</font>&nbsp;&nbsp;
+					</foreach>
+				</td>
+				<td>
+					{:getParentsName( $category , $v['category'])}
+				</td>
+				<td>
+				<if  condition="$gc">
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'reback'=>1))}">[REBACK]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'delete'=>1))}">[DELETE]</a>
+				<else/>
+					<a href="{:U(MODULE_NAME.'/Blog/content',array('id'=>$v['id']))}">[CONTENT]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/edit',array('id'=>$v['id']))}">[EDIT]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id']))}">[DELETE]</a>
+				</if>
+				</td>
+			</tr>
+		</foreach>
+
+	</table>
+	{$page}
+</body>
+</html>

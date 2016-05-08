@@ -1,0 +1,27 @@
+<include file="Blog/Home/View/Common/header.html" />
+	</head>
+	<body>
+		<div class="top"><a href="{:U(MODULE_NAME.'/Nav/add')}" >ADD</a></div>
+		<div  class="wrap">
+			<foreach name="rest" item="v">
+				<div class="modules">
+					<p>
+						<strong style="font-size: 20px; color: #333">{$v.$name} </strong>
+						<a href="{:U(MODULE_NAME.'/Nav/add',array('pid'=>$v['id'],'level'=>2) ,'')}">ADD</a>|
+						<a href="{:U(MODULE_NAME.'/Nav/edit',array('id'=>$v['id']) ,'')}">EDIT</a>|
+						<a href="{:U(MODULE_NAME.'/Nav/delete','id='.$v['id'] ,'' )}">DELETE</a>
+					</p>
+				<foreach name="v.child" item="action" > 
+					<div class="action">
+						{$action.$name}
+						<a href="{:U(MODULE_NAME.'/Nav/edit',array('id'=>$action['id']) ,'')}">EDIT</a>|
+						<a href="{:U(MODULE_NAME.'/Nav/delete','id='.$action['id'] ,'' )}">DELETE</a>
+						
+					</div>
+				</foreach>
+				</div>
+			</foreach>
+
+		</div>
+	</body>
+</html>

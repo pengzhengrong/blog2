@@ -1,0 +1,213 @@
+[ 2016-05-07T00:06:02+08:00 ] 113.47.130.226 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T00:06:02+08:00 ] 113.47.130.226 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T00:06:05+08:00 ] 113.47.130.226 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T00:07:08+08:00 ] 113.47.130.226 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000069s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T00:07:09+08:00 ] 113.47.130.226 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000094s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T00:23:55+08:00 ] 113.47.130.226 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000204s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T09:19:45+08:00 ] 113.47.163.131 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T09:20:11+08:00 ] 113.47.163.131 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000056s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T10:26:44+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T10:26:44+08:00 ] 118.198.42.179 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000008s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000057s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T10:29:12+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000090s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T10:29:18+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000106s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T10:39:52+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000234s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T11:30:20+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000193s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T11:30:23+08:00 ] 118.198.42.179 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000184s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T11:30:25+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000186s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T11:30:26+08:00 ] 118.198.42.179 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000199s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T11:30:58+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000187s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T11:31:01+08:00 ] 118.198.42.179 /favicon.ico
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000201s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Favicon
+
+[ 2016-05-07T12:38:05+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000124s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T12:38:39+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000070s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T14:31:49+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000065s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T14:32:01+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T14:38:28+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000095s ]
+NOTIC: [8] Undefined variable: rule /home/pzr/workspace/blog/ThinkPHP/Library/Think/Dispatcher.class.php 第 67 行.
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T14:39:07+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T14:39:26+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T15:20:06+08:00 ] 118.198.42.179 /Public/Home/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T16:19:19+08:00 ] 118.198.42.179 /i
+ERR: 无法加载模块:I
+
+[ 2016-05-07T16:19:22+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T16:19:28+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:00:38+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:00:40+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:00:46+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:01:27+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:01:28+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:01:29+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:01:30+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:01:33+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+
+[ 2016-05-07T17:02:58+08:00 ] 118.198.42.179 /Public/Admin/Images/logo.png
+ERR: 无法加载模块:Public
+

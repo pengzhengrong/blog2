@@ -1,0 +1,23 @@
+<include file="Blog/Home/View/Common/header.html" />
+</head>
+<body>
+	<form action="{:U(MODULE_NAME.'/Attr/edit')}" method="post" >
+		<table class="table"> 
+			<tr>
+				<td>TITLE</td>
+				<td><input  name="title" value="{$rest.title}"  /></td>
+			</tr>
+			<tr>
+				<td>COLOR</td>
+				<td><input  name="color"  value="{$rest.color}" /></td>
+			</tr>
+			<tr>
+				<td>SORT</td>
+				<td><input  name="sort"  value="{$rest.sort}" /></td>
+			</tr>
+		</table>
+		<input  type="hidden" name="id" value="{$rest.id}"  />
+		<input  type="submit" value="SUBMIT" />
+	</form>
+</body>
+</html>

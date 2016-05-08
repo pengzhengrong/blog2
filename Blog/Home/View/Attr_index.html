@@ -1,0 +1,26 @@
+<include file="Blog/Home/View/Common/header.html" />
+</head>
+<body>
+	<div class="top"><a href="{:U(MODULE_NAME.'/Attr/add')}" >ADD</a></div>
+	<table class="table">
+		<tr>
+			<th>ID</th>
+			<th>TITLE</th>
+			<th>SORT</th>
+			<th>OPERATOR</th>
+		</tr>
+		<foreach name="rest" item="v">
+			<tr>
+				<td>{$v.id}</td>
+				<td><font color="{$v.color}">{$v.title}</font></td>
+				<td>{$v.sort}</td>
+				<td>
+					<a href="{:U(MODULE_NAME.'/Attr/edit',array('id'=>$v['id']))}">EDIT</a>|
+					<a href="{:U(MODULE_NAME.'/Attr/delete',array('id'=>$v['id']))}">DELETE</a>
+				</td>
+			</tr>
+		</foreach>
+
+	</table>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+	
+	<title>Products - Black White HTML5 Template</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link href="__PUBLIC__/{$module_name}/Css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/{$module_name}/Css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/{$module_name}/Css/templatemo_style.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/Common/css/common.css" rel="stylesheet" type="text/css">	
+	<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+	
+	<div class="templatemo-container">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg right-container">
+			<h1 class="logo-left hidden-xs margin-bottom-60">Content</h1>
+			<div class="tm-right-inner-container">
+			<if condition="$blog">
+			<h1 class="templatemo-header">{$blog.title}</h1>
+				<div>
+					<span>点击量: <strong>{$blog.click}</strong></span>
+					<span>上次更新时间{$blog.update_time|date='Y-m-d H:m',###}</span>
+					<span>创建时间{$blog.created|date='Y-m-d H:m',###}</span>
+					<br />
+					<div style="float:right;padding-right: 30px;">
+						<foreach name="blog.attr" item="v">
+							<span ><font color="{$v.color}">{$v.title}</font></span>&nbsp;&nbsp;
+						</foreach>
+					</div>
+				</div>		
+				<article class="templatemo-item" id="article">
+					{$blog.content}	
+				</article>	
+			<else/>
+				<h1 class="templatemo-header">博主还未添加任何相关的内容</h1>
+				<article class="templatemo-item">
+					博主还未添加任何相关的内容,有意请邮件  <font color="red">{:C('EMAIL')}</font>
+				</article>
+			</if>
+				
+				<hr>
+				<footer>
+					<p class="col-lg-6 col-md-6 col-sm-12 col-xs-12 templatemo-copyright">Copyright &copy; 2084  Welcome to hello2world.top</p>
+					<p class="col-lg-6 col-md-6 col-sm-12 col-xs-12 templatemo-social">
+						<a href="#"><i class="fa fa-facebook fa-medium"></i></a>
+						<a href="#"><i class="fa fa-twitter fa-medium"></i></a>
+						<a href="#"><i class="fa fa-google-plus fa-medium"></i></a>
+						<a href="#"><i class="fa fa-youtube fa-medium"></i></a>
+						<a href="#"><i class="fa fa-linkedin fa-medium"></i></a>
+					</p>
+				</footer>
+			</div>		
+			
+		</div> <!-- left section -->
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg left-container">
+			<h1 class="logo-right hidden-xs margin-bottom-60">Comment</h1>	
+			<div class="tm-left-inner-container">
+				<ul class="nav nav-stacked templatemo-nav">
+				 <input class="btn btn-warning" type="button" value="抢沙发" id="comment" />
+				 <hr>
+				 <font color="{:fontColor()}"><textarea id="comment_content"></textarea></font>
+				</ul>
+				<div style="width: 300px;height: 500px" >
+					<iframe  width="400px;" height="400px"  name="comment" src="{:U(MODULE_NAME.'/Comment/index',array('blog_id'=>$blog['id']))}"></iframe>
+				</div>
+			</div>
+		</div> <!-- right section -->
+	</div>	
+</body>
+<script type="text/javascript">
+$( function(){
+	$('pre').hide();
+	$('pre').before('<i class="iconfont showPre">&#xe605;</i>');
+	$('#article').on( 'click' , '.showPre' ,callback );
+	$('#article').on( 'click' , '.closePre' ,callback );
+	function callback(event){
+		// console.log( event );
+		$(event.currentTarget).next().toggle();
+		if( $(event.currentTarget).attr('class') == 'iconfont showPre' ){
+			$(event.currentTarget).html( '&#xe604;' );
+			$(event.currentTarget).attr('class','iconfont closePre');
+		}else{
+			$(event.currentTarget).html( '&#xe605;' );
+			$(event.currentTarget).attr('class','iconfont showPre');
+		}
+	}
+	$('#comment').click( function(){
+		var content = $('#comment_content').val();
+		$.ajax({
+			url: '{:U(MODULE_NAME.'/Comment/add','','')}',
+			type: 'POST',
+			data: {
+				'blog_id': {$blog.id},
+				'content': content
+			},
+			dataType: 'text',
+			success: function(data){
+				if( data == '0' ){
+					alert('请先登入!');	
+				}else if( data == '-1'){
+					alert('评论功能关闭!');
+				}else{
+					alert('发表评论成功!');
+					window.location.reload();
+				}
+			}
+		});
+	});	
+});
+</script>
+</html>

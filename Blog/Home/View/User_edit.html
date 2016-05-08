@@ -1,0 +1,41 @@
+<include  file="Blog/Home/View/Common/header.html" />
+</head>
+<body>
+  <form action="{:U(MODULE_NAME.'/User/edit')}"  method="post">
+    <table class="table">
+      <tr>
+        <td>ID</td>
+        <td> <input readonly="readonly"  value="{$rest.id}"  name="uid" /></td>
+      </tr>
+      <tr>
+        <td>UNAME</td>
+        <td>{$rest.username}</td>
+      </tr>
+      <tr>
+        <td>PASSWD</td>
+        <td><input type="password" value="{$rest.passwd}" name="passwd" /><span></span></td>
+      </tr>
+      <tr>
+        <td>LOGIN_IP</td>
+        <td>{$rest.login_ip}</td>
+      </tr>
+      <tr>
+        <td>LOGIN_TIME</td>
+        <td>{$rest.login_ip|date='Y-m-d H:i',###}</td>
+      </tr>
+      <tr>
+        <td>LOCK</td>
+        <td>
+         <select name="lock">
+          <option>SELECT</option>
+          <option <if  condition="$rest['lock']==0">selected='selected'</if>  value="0">UNLOCK</option>
+          <option <if  condition="$rest['lock']==1">selected='selected'</if>  value="1">LOCK</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <input type="submit" name="do_submit" value="submit" />
+</form>
+</body>
+
+</html>
