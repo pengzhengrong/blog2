@@ -26,5 +26,5 @@ return array(
 		'/^blogout$/' => 'Admin/Login/logout',
 		),
 	'DEFAULT_MODULE' => 'Admin',
-	'SHOW_PAGE_TRACE' => true,
+	// 'SHOW_PAGE_TRACE' => true,
 );

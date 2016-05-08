@@ -54,8 +54,15 @@ Class BlogController extends CommonController {
 		$this->display();
 	}
 
+	/*public function _before_delete(){
+		notice( 'Delete?' );
+		exit;
+	}*/
+
 	public function delete() {
+
 		if( I('delete') != null ){
+			notice( 'Delete And Can\'t Reback ,Confirm?' );
 			$rest = M('blog')->delete(I('id'));
 			$rest || $this->error('DELETE FAILED');
 			$this->_after_delete( I('id') );
@@ -67,6 +74,7 @@ Class BlogController extends CommonController {
 			$rest || $this->error( 'REBACK FAILED',1 );
 			$this->redirect('gc');
 		}
+		notice( 'Confirm to Delete Blog?' );
 		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
 		$rest || $this->error( 'GC FAILED',1 );
 		$this->redirect('index');
@@ -74,7 +82,7 @@ Class BlogController extends CommonController {
 
 	public function  _after_delete( $blog_id ) {
 		$rest = M('blog_comment')->where( array('blog_id'=>I('id')) )->delete();
-		$rest || $this->error('BLOG COMMENT DELETE FAILED');
+		// $rest || $this->error('BLOG COMMENT DELETE FAILED');
 	}
 
 	public function gc() {
