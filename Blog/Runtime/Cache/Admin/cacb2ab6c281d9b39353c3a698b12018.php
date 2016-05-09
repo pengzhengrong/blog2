@@ -4,6 +4,7 @@
 	<title>COMMENT</title>
 	<script type="text/javascript" src="/Public/<?php echo ($module_name); ?>/Js/jquery-1.7.2.min.js"></script>
 	<link href="/Public/Common/css/common.css" rel="stylesheet" type="text/css">	
+	<?php echo baiduAccount();?>
 </head>
 <style type="text/css">
 	.fa {

@@ -6,11 +6,12 @@ function baiduAccount(){
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?4ba405b74f3d75d598dd66cda9c22c4f";
+  hm.src = "//hm.baidu.com/hm.js?e58ba1963b5a50dd007b97734b0dbfd8";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
-</script>';
+</script>
+';
 }
 
 function node_merge ( $node , $access = null , $pid=0) {
@@ -44,6 +45,10 @@ function my_log( $key='' , $value=null ) {
 	@error_log( "\n $key=".$value  ,3 , '/tmp/pzrlog.log');
 }
 
+/**
+@param $arr  
+@param $id  
+*/
 function getChildrens( $arr , $id ){
 	$databack = $id;
 	foreach ($arr as $key => $value) {
@@ -53,3 +58,4 @@ function getChildrens( $arr , $id ){
 	}
 	return $databack;
 }
+

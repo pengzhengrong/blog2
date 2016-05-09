@@ -24,7 +24,7 @@ function getParentsName( $categorys , $category ) {
 	return $databack;
 }
 
-function notice( $msg='' , $jumpUrl='' , $waitSecond=3  ){
+function notice( $msg='' , $jumpUrl='' , $waitSecond=0  ){
 	if( empty($msg) ) $msg='notice';
 	if( I('_notice_')==1 ) return;
 	if( empty($jumpUrl) ){

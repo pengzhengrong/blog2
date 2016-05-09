@@ -54,11 +54,6 @@ Class BlogController extends CommonController {
 		$this->display();
 	}
 
-	/*public function _before_delete(){
-		notice( 'Delete?' );
-		exit;
-	}*/
-
 	public function delete() {
 
 		if( I('delete') != null ){
@@ -104,7 +99,6 @@ Class BlogController extends CommonController {
 		$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
 
 		$this->page = $page->show();
-
 		// p($this->rest ); die;
 	}
 
@@ -128,11 +122,14 @@ Class BlogController extends CommonController {
 	private function blog_search($where=''){
 		if( I('cat_id',0,'intval') != 0 ){
 			$cat_id = I('cat_id');
-			$rest = A('Cat')->cat_cache();
+			$rest = M('category')->field('id,pid')->select();
+			// p( $rest ); die;
 			$cat_ids = getChildrens( $rest , $cat_id);
+			// p($cat_ids);die;
 			$where['cat_id'] = array('in' , $cat_ids);
 			$this->cat_id = $cat_id;
 		}
+		// p($where);die;
 		return $where;
 	}
 

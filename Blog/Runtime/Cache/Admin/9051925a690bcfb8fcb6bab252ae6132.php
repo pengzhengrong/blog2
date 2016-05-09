@@ -12,6 +12,7 @@
 	<link href="/Public/<?php echo ($module_name); ?>/Css/templatemo_style.css" rel="stylesheet" type="text/css">
 	<link href="/Public/Common/css/common.css" rel="stylesheet" type="text/css">	
 	<script type="text/javascript" src="/Public/<?php echo ($module_name); ?>/Js/jquery-1.7.2.min.js"></script>
+	<?php echo baiduAccount();?>
 </head>
 <body>
 	

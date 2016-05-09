@@ -45,7 +45,6 @@
 				<?php if($gc): ?><a href="<?php echo U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'reback'=>1));?>">[REBACK]</a>
 					<a href="<?php echo U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'delete'=>1));?>">[DELETE]</a>
 				<?php else: ?>
-					<a href="<?php echo U(MODULE_NAME.'/Blog/content',array('id'=>$v['id']));?>">[CONTENT]</a>
 					<a href="<?php echo U(MODULE_NAME.'/Blog/edit',array('id'=>$v['id']));?>">[EDIT]</a>
 					<a href="<?php echo U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id']));?>">[DELETE]</a><?php endif; ?>
 				</td>
