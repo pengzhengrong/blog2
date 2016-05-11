@@ -50,13 +50,14 @@ Class BlogController extends CommonController {
 			$delete = M('blog_attr')->where(array('blog_id'=>I('id')))->delete();
 			// $delete || $this->error('DELETE BLOG ATTR '.I('id').' FAILED');
 			$this->insert_blog_attr(I('attr_id') , I('id'));
+			$this->blog_cache(true);
 			$this->redirect('index');
 			return;
 		}
 
 		$this->rest = D('BlogRelation')->relation(true)->find(I('id'));
 		// p( $this->rest ); die;
-		$this->blog_cache(true);
+
 		$this->get_cat_attr();
 		$this->display();
 	}

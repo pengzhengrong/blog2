@@ -20,7 +20,7 @@ $(function(){
 		<option value="0">SELECT</option>
 		{:W('Cat/select',array($category))}
 	</select>
-		<table class="table"> 
+		<table class="table" style="margin-bottom: 50px;"> 
 			<tr>
 				<td>TITLE</td>
 				<td><input  name="title"  /></td>
@@ -54,11 +54,14 @@ $(function(){
 				</td>
 			</tr>
 		</table>
-		<input  type="submit" value="SUBMIT" />
+		<!-- <input  type="submit" value="SUBMIT" /> -->
+		{:fixedSubmit()} 
 	</form>
 </body>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-	var ue = UE.getEditor('container');
+	var ue = UE.getEditor('container',{
+		initialFrameHeight: 400,
+	});
 </script>
 </html>

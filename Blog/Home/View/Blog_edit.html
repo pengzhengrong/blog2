@@ -9,7 +9,7 @@
 		{:W('Cat/select',array($category,$rest['cat_id']))}
 		</select>
 
-		<table class="table"> 
+		<table class="table" style="margin-bottom: 50px;"> 
 			<tr>
 				<td>TITLE</td>
 				<td><input  name="title" value="{$rest.title}"  /></td>
@@ -41,7 +41,8 @@
 			</tr>
 		</table>
 		<input type="hidden" name="id" value="{$rest.id}" />
-		<input  type="submit" value="SUBMIT" />
+		<!-- <input  type="submit" value="SUBMIT" /> -->
+		{:fixedSubmit()} 
 	</form>
 </body>
 <!-- 实例化编辑器 -->
