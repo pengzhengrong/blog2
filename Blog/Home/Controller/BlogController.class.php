@@ -6,10 +6,15 @@ use Think\Controller;
 Class BlogController extends CommonController {
 
 	public function index() {
-		$where = $this->blog_search( array('status'=>0) );
-		$this->getBlog($where);
+		if( I('cat_id') == 0 ){
+			$this->blog_cache();
+		}else{
+			$where = $this->blog_search( array('status'=>0) );
+			$this->getBlog($where);
+		}
+		$this->get_cat_attr();
 		$this->display();
-	}
+	} 
 
 	public function add() {
 		if( IS_POST ){
@@ -48,14 +53,15 @@ Class BlogController extends CommonController {
 			$this->redirect('index');
 			return;
 		}
+
 		$this->rest = D('BlogRelation')->relation(true)->find(I('id'));
 		// p( $this->rest ); die;
+		$this->blog_cache(true);
 		$this->get_cat_attr();
 		$this->display();
 	}
 
 	public function delete() {
-
 		if( I('delete') != null ){
 			notice( 'Delete And Can\'t Reback ,Confirm?' );
 			$rest = M('blog')->delete(I('id'));
@@ -67,11 +73,14 @@ Class BlogController extends CommonController {
 		if( I('reback') != null ){
 			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0) );
 			$rest || $this->error( 'REBACK FAILED',1 );
+			$this->blog_cache(true);
 			$this->redirect('gc');
 		}
 		notice( 'Confirm to Delete Blog?' );
 		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
 		$rest || $this->error( 'GC FAILED',1 );
+
+		$this->blog_cache(true);
 		$this->redirect('index');
 	}
 
@@ -84,17 +93,16 @@ Class BlogController extends CommonController {
 		$where = $this->blog_search( array('status'=>1) );
 		$this->getBlog( $where);
 		$this->gc = true;
+
 		$this->display('Blog_index');
 	}
 
 	private function getBlog( $where ) {
 		// p($where);
 		$field = array('id','cat_id','title','click','created','sort');
-
-		$this->get_cat_attr();
-
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
 		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
+		// p( I('p',1,'intval') );
 		$limit = $page->firstRow.','.$page->listRows;
 		$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
 
@@ -104,17 +112,18 @@ Class BlogController extends CommonController {
 
 	private function insert_blog_attr( $attr_ids , $blog_id) {
 		$values = array();
-			foreach ($attr_ids as $key => $value) {
-				$values[] = "({$blog_id},{$value})";
-			}
-			$insert_sql = 'insert into '.C('DB_NAME').'.'.C('DB_PREFIX').'blog_attr(`blog_id`,`attr_id`) values'.implode(',',$values);
+		foreach ($attr_ids as $key => $value) {
+			$values[] = "({$blog_id},{$value})";
+		}
+		$insert_sql = 'insert into '.C('DB_NAME').'.'.C('DB_PREFIX').'blog_attr(`blog_id`,`attr_id`) values'.implode(',',$values);
 			// p($insert_sql); die;
-			$blog_attr = M('blog_attr')->query($insert_sql);
+		$blog_attr = M('blog_attr')->query($insert_sql);
 			// $blog_attr || $this->error('INSERT BLOG ATTR FAILED');
 	}
 
 	private function get_cat_attr(){
-		$this->category = A('Cat')->cat_cache();
+		$this->cate = A('Cat')->cat_cache();
+		$this->category = node_merge( $this->cate );
 		$this->attr = A('Attr')->attr_cache();
 		// p($this->category);die;
 	}
@@ -122,7 +131,8 @@ Class BlogController extends CommonController {
 	private function blog_search($where=''){
 		if( I('cat_id',0,'intval') != 0 ){
 			$cat_id = I('cat_id');
-			$rest = M('category')->field('id,pid')->select();
+			// $rest = M('category')->field('id,pid')->select();
+			$rest = A('Cat')->cat_cache();
 			// p( $rest ); die;
 			$cat_ids = getChildrens( $rest , $cat_id);
 			// p($cat_ids);die;
@@ -131,6 +141,24 @@ Class BlogController extends CommonController {
 		}
 		// p($where);die;
 		return $where;
+	}
+
+	private function blog_cache( $refresh = false){
+		$this->p = I('p',1,'intval');
+		$cache_key = 'BLOG_PAGE_'.$this->p;
+		
+		$field = array('id','cat_id','title','click','created','sort');
+		$where=array('status'=>0) ;
+		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
+		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
+		if( !$refresh && S($cache_key) ){
+			$this->rest = S( $cache_key );
+		}else{
+			$limit = $page->firstRow.','.$page->listRows;
+			$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
+			S( $cache_key , $this->rest , 60 );
+		}
+		$this->page = $page->show();
 	}
 
 }

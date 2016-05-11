@@ -4,6 +4,7 @@ use Think\Controller;
 class IndexController extends CommonController {
 	public function index(){
 		$rest = M('category')->order('sort')->select();
+		// $rest = A('Home/Cat')->cat_cache();
 		$this->rest = node_merge( $rest );
 		if( I('id') != null ){
 			foreach ($this->rest as $key => $value) {

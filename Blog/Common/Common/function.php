@@ -59,3 +59,14 @@ function getChildrens( $arr , $id ){
 	return $databack;
 }
 
+function _session( $name , $value , $expire=null ){
+	$expire = C('SESSION_TIME');
+	$arr = array(
+		'name' => $name,
+		'expire' => $expire
+		);
+	session( $arr , $value );
+	// p( $arr );p( $value );
+	p( $_SESSION );
+	p( session() );die;
+}

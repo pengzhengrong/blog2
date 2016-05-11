@@ -24,9 +24,9 @@ function getParentsName( $categorys , $category ) {
 	return $databack;
 }
 
-function notice( $msg='' , $jumpUrl='' , $waitSecond=0  ){
-	if( empty($msg) ) $msg='notice';
-	if( I('_notice_')==1 ) return;
+function notice( $msg='' , $jumpUrl='' , $waitSecond=0 ){
+	if( empty($msg) ) $msg='Notice';
+	if(I('_notice_')==1 ) return;
 	if( empty($jumpUrl) ){
 		$jumpUrl = __SELF__;
 		if(   ($pos = strpos( __SELF__,  C('TMPL_TEMPLATE_SUFFIX') )) ){
@@ -36,5 +36,13 @@ function notice( $msg='' , $jumpUrl='' , $waitSecond=0  ){
 	// echo T('Common/notice','Tpl'); die;
 	include  T('Common/notice','Tpl');
 	exit;
+}
+
+function fixedSubmit(){
+	return '<div class="fixed-bottom" >
+			<div class="fixed-bottom fixed-but">
+				<input   type="submit" value="SUBMIT" />
+			</div>
+		</div>';
 }
 

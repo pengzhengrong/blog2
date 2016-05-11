@@ -19,7 +19,9 @@ Class CatWidget extends Controller {
 					$class = 'method';
 					break;
 			}
+			
 			echo '<div class='.$class.'>';
+			echo "<input style='width:10px;height:10px;padding:3px 3px;' name='sort[]' readonly value={$v['sort']}>";
 			echo $v['title'];
 			if( $v['multi'] ){
 				echo '<a href="'.U(MODULE_NAME.'/Cat/add',array('pid'=>$v['id'],'level'=>$v['level']+1)).'">[ADD]</a>';

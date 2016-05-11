@@ -12,7 +12,7 @@
         <div class="jump">
            <p class="detail"> <?php echo($msg); ?></p>
             <a  class="btn" href="javascript:void()" onclick="history.go(-1)" >返回</a> 
-            <a id="href" id="btn-now" class="btn" href="<?php echo($jumpUrl.'/_notice_/1'); ?>">确认</a> 
+            <a id="btn-now" class="btn" href="<?php echo  $jumpUrl.'/_notice_/1'; ?>">确认</a> 
             <hr>
             <?php  
                 if( $waitSecond ){
@@ -24,11 +24,11 @@
 </body>
 <script type="text/javascript">
 (function(){
- var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+ // var wait = document.getElementById('wait'),href = document.getElementById('href').href;
  var interval = setInterval(function(){
         var time = --wait.innerHTML;
         if(time <= 0) {
-            location.href = href;
+            location.href = history.go(-1);
             clearInterval(interval);
         };
      }, 1000);

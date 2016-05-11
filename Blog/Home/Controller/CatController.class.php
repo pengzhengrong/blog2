@@ -5,7 +5,7 @@ use Think\Controller;
 Class CatController extends CommonController {
 
 	public function index() {
-		$this->rest = $this->cat_cache();
+		$this->rest = node_merge( $this->cat_cache() );
 		// p( $this->rest );die;
 		$this->display();
 	}
@@ -49,7 +49,7 @@ Class CatController extends CommonController {
 			return S( 'blog_cate' );
 		}else{
 			$rest = M('category')->order('sort')->select();
-			$rest = node_merge( $rest );
+			// $rest = node_merge( $rest );
 			S( 'blog_cate' , $rest , C('DEFAULT_CACHE_TIME') );
 			return $rest;
 		}

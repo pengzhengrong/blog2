@@ -102,4 +102,24 @@ span.msg{color:#666;border:solid 1px #eee;padding:6px;margin-left:10px;}
 	float: none;
 }
 
-
+.fixed-bottom{
+	position: fixed;
+	/*_position: relative;*/
+	z-index: 999;
+	bottom: 0;
+	height: 30px;
+	border-top: 1px solid #f1f1f1;
+	padding: 10px 0;
+	width: 100%;
+	background: #F1F1F1 repeat-x 0 -100px;
+}
+.fixed-bottom .fixed-but {
+	position: fixed;
+	/*_position: relative;*/
+	bottom: 0;
+	height: 30px;
+	border-top: 1px solid #f1f1f1;
+	padding: 10px 0;
+	width: 100%;
+	background: #F1F1F1  repeat-x 0 -100px;
+}

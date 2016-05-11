@@ -7,7 +7,7 @@ class CommonController extends Controller {
       $this->module_name = MODULE_NAME;
       $uid = session( C('USER_AUTH_KEY') );
       // echo $uid; die;
-      if( empty( session('username') ) || empty( $uid )  ){
+      if( empty( session('username') ) /*|| empty( $uid ) */ ){
                                    if( C('URL_ROUTER_ON') ){
                                         $this->error('Please Login ',U('/login'));
                                    }else{

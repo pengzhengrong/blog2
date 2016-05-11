@@ -35,15 +35,15 @@
 					</foreach>
 				</td>
 				<td>
-					{:getParentsName( $category , $v['category'])}
+					{:getParentsName( $cate , $v['category'])}
 				</td>
 				<td>
 				<if  condition="$gc">
-					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'reback'=>1))}">[REBACK]</a>
-					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'delete'=>1))}">[DELETE]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'reback'=>1,'p'=>$p))}">[REBACK]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'delete'=>1,'p'=>$p))}">[DELETE]</a>
 				<else/>
-					<a href="{:U(MODULE_NAME.'/Blog/edit',array('id'=>$v['id']))}">[EDIT]</a>
-					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id']))}">[DELETE]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/edit',array('id'=>$v['id'],'p'=>$p))}">[EDIT]</a>
+					<a href="{:U(MODULE_NAME.'/Blog/delete',array('id'=>$v['id'],'p'=>$p))}">[DELETE]</a>
 				</if>
 				</td>
 			</tr>

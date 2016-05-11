@@ -95,6 +95,7 @@ class Verify {
             return false;
         }
 
+        my_log( $this->authcode(strtoupper($code)) , $secode['verify_code']);
         if($this->authcode(strtoupper($code)) == $secode['verify_code']) {
             $this->reset && session($key, null);
             return true;
@@ -174,6 +175,7 @@ class Verify {
         $secode['verify_code'] = $code; // 把校验码保存到session
         $secode['verify_time'] = NOW_TIME;  // 验证码创建时间
         session($key.$id, $secode);
+        my_log( 'key' , $code );
                         
         header('Cache-Control: private, max-age=0, no-store, no-cache, must-revalidate');
         header('Cache-Control: post-check=0, pre-check=0', false);		

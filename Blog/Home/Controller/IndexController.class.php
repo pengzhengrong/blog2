@@ -3,6 +3,10 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends CommonController {
     public function index(){
+
+            // echo session_save_path();
+            // p( $_SESSION );die;
+
     	$rest = M('navigation')->field( $field)->order('sort')->select();
     	$this->rest = node_merge( $rest ) ;
     	$name = C('NAVIGATION')=='en_name'?'en_name':'zn_name';

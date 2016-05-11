@@ -3,46 +3,79 @@ namespace Home\Controller;
 use Think\Controller;
 use Think;
 class LoginController extends Controller {
-    public function index(){
-        $this->module_name = MODULE_NAME;
-        $this->display();
-     }
 
-     public function verify() {
-     	$verify = new  \Think\Verify;
-     	$verify->codeSet = '0123456789';
-     	// $verify->imageW = 100;
-     	// $verify->imageH = 30;
-     	$verify->length = 4;
-     	$verify->fontSize = 16;
-     	$verify->entry();
-     }
+  public function index(){
+            $this->module_name = MODULE_NAME;
+            $this->display();
+  }
 
-     public function handle() {
-     	$verify = new \Think\Verify;
-                $where = array(
-                    'username' => I('username'),
-                    'password' => I('passwd',0,'md5')
-                    );
-                $rest = M('user')->where($where)->find();
-                // p($rest) ; die;
-     	$check = $verify->check( I('code') );
-     	$check || $this->error('CODE ERROR');
-             session( array( 'expire'=>3600*24 ) );
-     	session('username', $rest['username']);
-                session( C('USER_AUTH_KEY') , $rest['id'] );
-                if( in_array($rest['username'],  explode(',', C('RBAC_SUPERADMIN'))) )
-                        session( C('ADMIN_AUTH_KEY') , $rest['id'] );
-                if( C('URL_ROUTER_ON') ){
-     	      $this->redirect('/admin');
-                }
-                $this->redirect(U(MODULE_NAME.'/Index/index'));
-     }
+  public function verify() {
+            $verify = new  \Think\Verify;
+            $verify->codeSet = '0123456789';
+            // $verify->imageW = 100;
+            // $verify->imageH = 30;
+            $verify->length = 4;
+            $verify->fontSize = 16;
+            $verify->entry();
+  }
 
-     public function logout() {
-         session_unset( $_SESSION );
-         session_destroy( $_SESSION );
-         $this->redirect('index');
-     }
+  public function handle() {
+            $verify = new \Think\Verify;
+            $check = $verify->check( I('code'));
+            var_dump($check);
+            $check || notice('验证码错误!','/login',1);
+
+            $where = array(
+                        'username' => I('username'),
+                        'passwd' => I('passwd',0,'md5')
+            );
+            $rest = M('user')->where($where)->fetchSql(false)->find();
+            $rest || notice( 'Login failed','/login',1 );
+
+            $time = C('SESSION_TIME');
+            setcookie( session_name() , session_id() , $time );
+            session( 'username' , $rest['username']);
+            session( C('USER_AUTH_KEY'), $rest['id'] );
+
+            if( in_array($rest['username'],  explode(',', C('RBAC_SUPERADMIN'))) )
+              session( C('ADMIN_AUTH_KEY') , $rest['id'] );
+            if( C('URL_ROUTER_ON') ){
+              $this->redirect('/admin');
+            }
+            $this->redirect(U(MODULE_NAME.'/Index/index'));
+  }
+
+  public function checkcode(){
+    $verify = new \Think\Verify;
+    $check = $verify->check( I('code'));
+    if( $check ){
+      exit('1');
+    }
+    exit('0');
+  }
+
+  public function checkpassword(){
+     $where = array(
+        'username' => I('username'),
+        'passwd' => I('password' , '','md5')
+      );
+     $rest = M('user')->where($where)->find();
+     $rest || exit('0');
+     exit('1');
+  }
+
+  public function checkusername(){
+    $rest = M('user')->field('id')->getByUsername( I('username') );
+    // my_log('rest',json_encode($rest));
+    $rest || exit('0');
+    exit('1');
+  }
+
+  public function logout() {
+    $_SESSION = array();
+    session_unset();
+    session_destroy();
+    $this->redirect('index');
+  }
 
 }

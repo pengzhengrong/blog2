@@ -27,4 +27,5 @@ return array(
 		),
 	'DEFAULT_MODULE' => 'Admin',
 	// 'SHOW_PAGE_TRACE' => true,
+	'SESSION_TIME' => 24*3600,
 );
