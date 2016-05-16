@@ -28,4 +28,9 @@ return array(
 	'DEFAULT_MODULE' => 'Admin',
 	// 'SHOW_PAGE_TRACE' => true,
 	'SESSION_TIME' => 24*3600,
+	/*'SESSION_OPTIONS' => array(
+		'name' => 'SESSION_NAME',
+		'expire' => 2,
+		'type' => 'db',
+		),*/
 );

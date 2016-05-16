@@ -7,10 +7,7 @@ create  table `think_blog` (
   `sort` smallint(6) not null default 0,
   `status` tinyint(1) not null default 0,
   `content` text ,
-<<<<<<< HEAD
-=======
   `update_time` int(11) not null default 0,
->>>>>>> gh-pages
   primary key(`id`),
   key(`title`) ,
   key(`cat_id`)
@@ -42,10 +39,7 @@ create table `think_attr`(
   `id` int(11) unsigned not null auto_increment,
   `title` varchar(30) not null default '',
   `color` varchar(10) not null default '',
-<<<<<<< HEAD
-=======
   `sort` tinyint(1) not null default 0,
->>>>>>> gh-pages
   primary key(`id`)
 )engine=myisam default charset=utf8 auto_increment=1;
 
@@ -76,10 +70,7 @@ create table `think_navigation`(
   `pid` int(11) unsigned not null default 0,
   `url` varchar(100) not null default '',
   `color` varchar(20) not null default '',
-<<<<<<< HEAD
-=======
   `sort` int(6) not null default 0,
->>>>>>> gh-pages
   primary key(`id`)
 )engine=myisam default charset=utf8 auto_increment=1;
 
@@ -91,11 +82,8 @@ create table `think_blog_comment`(
   `pid` int(11) unsigned not null default 0,
   `status` tinyint(1) not null default 0,
   `created` int(11) not null default 0,
-<<<<<<< HEAD
-=======
   `top_num` int(6) not null default 0,
   `base_num` int(6) not null default 0,
->>>>>>> gh-pages
   `extra` varchar(200) not null default '',
   key(`blog_id`)
 )engine=myisam default charset=utf8 auto_increment=1;
@@ -116,3 +104,10 @@ create table `think_comment_count`(
   `count` int(11) not null default 0,
   key(`comment_id`)
 )engine=myisam default charset=utf8 ;
+
+CREATE TABLE think_session (
+       session_id varchar(255) NOT NULL,
+       session_expire int(11) NOT NULL,
+       session_data blob,
+       UNIQUE KEY `session_id` (`session_id`)
+     )engine=myisam default charset=utf8 ;

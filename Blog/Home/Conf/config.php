@@ -17,4 +17,9 @@ return array(
 	'PAGE_SIZE' => 10,
 	'NAVIGATION' => 'zn_name', // nav show en or zn
 	'DEFAULT_CACHE_TIME' => 3600*24,
+	'SESSION_OPTIONS' => array(
+		'name' => 'SESSION_NAME',
+		'expire' => 3600*24,
+		'type' => 'db',
+		),
 );
