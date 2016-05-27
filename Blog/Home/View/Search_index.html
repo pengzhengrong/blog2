@@ -1,0 +1,24 @@
+<include file="Blog/Home/View/Common/header.html" />
+<script type="text/javascript">
+	$(function(){
+		$('#elastic').click(function(){
+			$.ajax({
+				url:"{:U('Search/create')}",
+				type:"POST",
+				dataType:"json",
+				success:function(data){
+					// console.log(data.data);
+					alert('success:handle '+data.data);
+				}
+		});
+	});
+	})
+</script>
+</head>
+<body>
+	<div style="margin: 20px 30px">
+		<h5>点击同步ES和mysql数据库</h5>
+		<input type="button" id="elastic" value="ES同步" />
+	</div>
+</body>
+</html>

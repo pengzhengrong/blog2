@@ -20,6 +20,15 @@
 				</select>
 				</td>
 			</tr>
+			<tr>
+				<td>DISPLAY</td>
+				<td>
+				<select name="status">
+					<option  value="0">显示</option>
+					<option {$rest['status']?'selected':''} value="1">隐藏</option>
+				</select>
+				</td>
+			</tr>
 		</table>
 		<input  type="hidden" value="{$rest.id}" name="id" />
 		<input  type="submit" value="SUBMIT" name="submit" />

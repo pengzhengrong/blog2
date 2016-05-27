@@ -8,6 +8,8 @@ class LoginController extends Controller {
   public $flag = false;
 
   public function index(){
+
+
             $this->module_name = MODULE_NAME;
             $this->display();
   }
@@ -25,7 +27,7 @@ class LoginController extends Controller {
   public function handle() {
             $verify = new \Think\Verify;
             $check = $verify->check( I('code'));
-            var_dump($check);
+            // var_dump($check);
             $check || notice('验证码错误!','/login',1);
 
             $where = array(

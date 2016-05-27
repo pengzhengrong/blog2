@@ -24,7 +24,7 @@ function getParentsName( $categorys , $category ) {
 	return $databack;
 }
 
-function notice( $msg='' , $jumpUrl='' , $waitSecond=0 ){
+function notice( $msg='' , $jumpUrl='' , $waitSecond=0 ,$operator='delete'){
 	if( empty($msg) ) $msg='Notice';
 	if(I('_notice_')==1 ) return;
 	if( empty($jumpUrl) ){
@@ -40,9 +40,10 @@ function notice( $msg='' , $jumpUrl='' , $waitSecond=0 ){
 
 function fixedSubmit(){
 	return '<div class="fixed-bottom" >
-			<div class="fixed-bottom fixed-but">
-				<input   type="submit" value="SUBMIT" />
-			</div>
-		</div>';
+	<div class="fixed-bottom fixed-but">
+		<input   type="submit" value="SUBMIT" />
+	</div>
+</div>';
 }
+
 

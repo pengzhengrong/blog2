@@ -59,14 +59,21 @@ function getChildrens( $arr , $id ){
 	return $databack;
 }
 
-function _session( $name , $value , $expire=null ){
-	$expire = C('SESSION_TIME');
-	$arr = array(
-		'name' => $name,
-		'expire' => $expire
-		);
-	session( $arr , $value );
-	// p( $arr );p( $value );
-	p( $_SESSION );
-	p( session() );die;
+function getSearch( $rest ,$fields, $key='hits'){
+	// P($rest);die;
+	$databack = array();
+	$rest = $rest[$key];
+	if( $key == 'hits' ){
+		foreach ($rest['hits'] as  $k=>$v) {
+			foreach ($fields as $kk=>$vv) {
+				if( strpos($vv,'_') === 0){
+					$databack[$k][$kk] = $v[$vv];
+				}else{
+					$databack[$k][$kk] = $v['fields'][$vv][0];
+				}
+			}
+		}
+	}
+	// p($databack);die;
+	return $databack;
 }

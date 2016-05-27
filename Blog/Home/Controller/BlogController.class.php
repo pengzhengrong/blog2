@@ -2,8 +2,13 @@
 
 namespace Home\Controller;
 use Think\Controller;
-
+require_once('Blog/Library/vendor/autoload.php'); 
 Class BlogController extends CommonController {
+
+	public function _initialize(){
+		$param = C('DEFAULT_HOST');
+		$this->client = new \Elasticsearch\Client($param);
+	}
 
 	public function index() {
 		if( I('cat_id') == 0 ){
@@ -20,7 +25,9 @@ Class BlogController extends CommonController {
 		if( IS_POST ){
 			// $data = I('post.');
 			$data = $_POST;
+			p($data);die;
 			$data['created'] = time();
+			$data['update_time'] = time();
 			$rest = M('blog')->add( $data );
 			// my_log( 'id' , $rest );
 			$rest || $this->error( 'INSERT ERROR' );
@@ -41,11 +48,17 @@ Class BlogController extends CommonController {
 
 	public function edit() {
 		if( IS_POST ){
-			// $data = I('post.');
+			// $data = I('post.'); 
 			$data = $_POST;
 			$data['update_time'] = time();
 			// p( $data );die;
 			$rest = M('blog')->save($data);
+			//update ES 
+			// p($data['cat_id']);die;
+			if( C('ELASTIC_ON') ){
+				$this->update_index($data['id'] , $data['content']);
+			}
+			
 			$rest || $this->error( 'UPDATE FAILED' );
 			$delete = M('blog_attr')->where(array('blog_id'=>I('id')))->delete();
 			// $delete || $this->error('DELETE BLOG ATTR '.I('id').' FAILED');
@@ -74,13 +87,18 @@ Class BlogController extends CommonController {
 		if( I('reback') != null ){
 			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0) );
 			$rest || $this->error( 'REBACK FAILED',1 );
+			if( C('ELASTIC_ON') ){
+				$this->update_index(I('id'),0,'status');
+			}
 			$this->blog_cache(true);
 			$this->redirect('gc');
 		}
 		notice( 'Confirm to Delete Blog?' );
 		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
 		$rest || $this->error( 'GC FAILED',1 );
-
+		if( C('ELASTIC_ON') ){
+			$this->update_index(I('id'),1,'status');
+		}
 		$this->blog_cache(true);
 		$this->redirect('index');
 	}
@@ -100,7 +118,7 @@ Class BlogController extends CommonController {
 
 	private function getBlog( $where ) {
 		// p($where);
-		$field = array('id','cat_id','title','click','created','sort');
+		$field = array('id','cat_id','title','click','created','sort','update_time');
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
 		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
 		// p( I('p',1,'intval') );
@@ -144,11 +162,11 @@ Class BlogController extends CommonController {
 		return $where;
 	}
 
-	private function blog_cache( $refresh = false){
+	private function blog_cache( $refresh = true){
 		$this->p = I('p',1,'intval');
 		$cache_key = 'BLOG_PAGE_'.$this->p;
 		
-		$field = array('id','cat_id','title','click','created','sort');
+		$field = array('id','cat_id','title','click','created','sort','update_time');
 		$where=array('status'=>0) ;
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
 		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
@@ -160,6 +178,37 @@ Class BlogController extends CommonController {
 			S( $cache_key , $this->rest , 60 );
 		}
 		$this->page = $page->show();
+	}
+
+	//ES update
+	private function update_index($id ,$value , $key='content'){
+		$params = array(
+			'id' => $id,
+			'index' => 'test',
+			'type' => 'think_blog',
+			'script' => "ctx._source.$key =  \"$value\""
+			);
+		$data = $this->client->update($params);
+		// p($data);die;
+		/*if( $data['_id'] == $id ){
+			notice('索引同步成功','index',1,'update');
+		}*/
+	}
+
+	private function delete_index( $id ){
+		$params = array(
+			'id' => $id,
+			'index' => 'test',
+			'type' => 'think_blog'
+			);
+		$data = $this->client->delete($params);
+		// if( $data['_id'] == $id ){
+		// 	notice('索引删除成功','index',1,'update');
+		// }
+	}
+
+	private function add_index( $id ){
+
 	}
 
 }

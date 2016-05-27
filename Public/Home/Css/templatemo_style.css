@@ -17,7 +17,7 @@ h2 { font-size: 24px; }
 .left-container {
 	display: table-cell;
 	float: none;
-	width: 38%;
+	width: 30%;
 	padding-bottom: 20px;
 	padding-left: 30px;
 	padding-right: 0;
@@ -25,7 +25,7 @@ h2 { font-size: 24px; }
 .right-container {
 	display: table-cell;
 	float: none;
-	width: 62%;
+	width: 70%;
 	padding-bottom: 20px;
 	padding-left: 0;
 	padding-right: 30px;
@@ -39,7 +39,7 @@ h2 { font-size: 24px; }
 .tm-left-inner-container { margin-right: 30px; }
 .tm-right-inner-container {
 	margin-left: 30px;
-	max-width: 710px;
+	/*max-width: 710px;*/
 }
 .templatemo-logo { 
 	display: table;
@@ -49,11 +49,11 @@ h2 { font-size: 24px; }
 }
 .logo-left-container {
 	display: table-cell;
-	width: 38%;
+	width: 30%;
 }
 .logo-right-container {
 	display: table-cell;
-	width: 62%;
+	width: 70%;
 }
 .templatemo-logo h1 {
 	margin-top: 0;

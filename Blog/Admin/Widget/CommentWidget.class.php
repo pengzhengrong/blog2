@@ -25,9 +25,9 @@ Class CommentWidget  extends Controller {
 			echo "<span onclick='showComment({$id})'  title='show' class='fa'><span class='iconfont'>&#xe606;</span>(".count($v['child']).")</span> ";
 			// }
 			//ding
-			echo '<span class="iconfont" title="ding" onclick="vote_comment('.$id.',1)">&#xe60a;('.$v['top_num'].')</span>  ';
+			echo '<span class="iconfont" title="顶" onclick="vote_comment('.$id.',1)">&#xe60a;('.$v['top_num'].')</span>  ';
 			//cai
-			echo '<span class="iconfont" title="cai" onclick="vote_comment('.$id.',-1)">&#xe609;('.$v['base_num'].')</span>  ';
+			echo '<span class="iconfont" title="踩" onclick="vote_comment('.$id.',-1)">&#xe609;('.$v['base_num'].')</span>  ';
 			//huifu
 			echo '<span id="'.$id.'" title="'.$v['username'].'"  class="reply iconfont">&#xe607;</span>';
 			echo "</li>";

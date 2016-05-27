@@ -20,4 +20,9 @@ class IndexController extends CommonController {
     	$this->name = $name;
         	$this->display();
      }
+
+     public function test(){
+           session();
+     }
+     
 }

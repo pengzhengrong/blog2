@@ -3,6 +3,9 @@
 namespace Admin\Widget;
 use Think\Controller;
 
+/**
+ * 显示栏目,无限递归显示
+ */
 Class CatWidget extends Controller {
 
 	public function unlimitLayer( $cate ) {

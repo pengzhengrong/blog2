@@ -22,4 +22,6 @@ return array(
 		'expire' => 3600*24,
 		'type' => 'db',
 		),
+
+	'ELASTIC_ON' => false,
 );

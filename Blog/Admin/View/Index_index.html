@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/index.js"></script>
-<link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/public.css" />
-<link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/index.css" />
+<link rel="stylesheet" href="__PUBLIC__/Common/css/index.css" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 <title>BLOG </title>
 <base target="iframe"/>
@@ -17,6 +16,12 @@
 			<foreach name="rest" item="v">
 				<a target="_self"  href="{:C('URL_ROUTER_ON')?'blog_'.$v['id']:U(MODULE_NAME.'/Index/index',array('id'=>$v['id']))}" >{$v.title}</a>
 			</foreach>
+		</div>
+		<div>
+			<form action="/search" method="post" >
+			<input name="search_key" placeholder="关键词" />
+			<input type="submit" value="搜索" />
+			</form>
 		</div>
 		<div class="exit">
 			{:session('username')==null
