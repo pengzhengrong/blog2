@@ -81,6 +81,23 @@ Class Elastic {
 
 	}
 
+	public function create_index_one($fields , $conf ){
+		$index = $this->getParams($conf , 'index');
+		$type = $this->getParams($conf , 'type');
+		$id = $this->getParams($conf, 'id');
+		if( empty($id) )
+			notice('ES create failed',1);
+		$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index; 
+		$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
+		$params['id'] = $id;
+		foreach ($fields as $k => $v) {
+			$params['body'][$k] = $v;
+		}
+		// p($params);die;
+		$data = $this->client->index($params); 
+		return $data;
+	}
+
 	public function create_index_by_rest( $rtn , $fields , $conf=array()){
 		$index = $this->getParams($conf , 'index');
 		$type = $this->getParams($conf , 'type');
@@ -116,6 +133,10 @@ Class Elastic {
 
 	public function search($params){
 		return $this->client->search($params);
+	}
+
+	public function delete($params){
+		return $this->client->delete($params);
 	}
 
 	/**

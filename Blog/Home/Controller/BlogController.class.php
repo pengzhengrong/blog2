@@ -2,12 +2,15 @@
 
 namespace Home\Controller;
 use Think\Controller;
+use Library;
 require_once('Blog/Library/vendor/autoload.php'); 
 Class BlogController extends CommonController {
 
+	public $elastic;
 	public function _initialize(){
 		$param = C('DEFAULT_HOST');
 		$this->client = new \Elasticsearch\Client($param);
+		$this->elastic = new \Library\Elastic($param);
 	}
 
 	public function index() {
@@ -25,12 +28,28 @@ Class BlogController extends CommonController {
 		if( IS_POST ){
 			// $data = I('post.');
 			$data = $_POST;
-			p($data);die;
+			// p($data);die;
 			$data['created'] = time();
 			$data['update_time'] = time();
 			$rest = M('blog')->add( $data );
 			// my_log( 'id' , $rest );
 			$rest || $this->error( 'INSERT ERROR' );
+			if( C('ELASTIC_ON') ){
+				$fields = array(
+					'content' => dataclean($data['content']),
+					'title' => $data['title'],
+					'status' => 0,
+					'cat_id' => I('cat_id')
+					);
+				$params = array(
+					'id' => $rest
+					);
+				// p($fields);die;
+				$rst = $this->elastic->create_index_one($fields , $params);
+				if( empty($rst['_id']) ){
+					//log
+				}
+			}
 			$cate_blog = array(
 				'cat_id' => I('cat_id'),
 				'blog_id' => $rest
@@ -39,6 +58,7 @@ Class BlogController extends CommonController {
 			$result || $this->error( 'BLOG RELATION CATEGORY FAILED' );
 			$attr_ids = I('attr_id');
 			$this->insert_blog_attr( $attr_ids , $rest );
+			// p($rst);die;
 			$this->redirect( 'index');
 			return;
 		}
@@ -56,6 +76,7 @@ Class BlogController extends CommonController {
 			//update ES 
 			// p($data['cat_id']);die;
 			if( C('ELASTIC_ON') ){
+				$content = dataclean($data['content']);
 				$this->update_index($data['id'] , $data['content']);
 			}
 			
@@ -88,7 +109,7 @@ Class BlogController extends CommonController {
 			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0) );
 			$rest || $this->error( 'REBACK FAILED',1 );
 			if( C('ELASTIC_ON') ){
-				$this->update_index(I('id'),0,'status');
+				@$this->update_index(I('id'),0,'status');
 			}
 			$this->blog_cache(true);
 			$this->redirect('gc');
@@ -97,7 +118,7 @@ Class BlogController extends CommonController {
 		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
 		$rest || $this->error( 'GC FAILED',1 );
 		if( C('ELASTIC_ON') ){
-			$this->update_index(I('id'),1,'status');
+			@$this->update_index(I('id'),1,'status');
 		}
 		$this->blog_cache(true);
 		$this->redirect('index');
@@ -105,6 +126,15 @@ Class BlogController extends CommonController {
 
 	public function  _after_delete( $blog_id ) {
 		$rest = M('blog_comment')->where( array('blog_id'=>I('id')) )->delete();
+		if( C('ELASTIC_ON') ){
+			$params = array(
+				'index' => C('DEFAULT_INDEX'),
+				'type' => C('DEFAULT_TYPE'),
+				'id' => I('id')
+				);
+			$data = $this->elastic->delete($params);
+			//log
+		}
 		// $rest || $this->error('BLOG COMMENT DELETE FAILED');
 	}
 

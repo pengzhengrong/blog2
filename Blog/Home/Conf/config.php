@@ -23,5 +23,5 @@ return array(
 		'type' => 'db',
 		),
 
-	'ELASTIC_ON' => false,
+	'ELASTIC_ON' => true,
 );

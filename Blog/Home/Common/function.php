@@ -46,4 +46,17 @@ function fixedSubmit(){
 </div>';
 }
 
+function dataclean( $data ){
+		//trim &nbsp;
+		$temp = preg_replace('/&nbsp;/', ' ', $data);
+		$temp = preg_replace('/<br\/>/', '', $temp);
+		$temp = preg_replace('/(<\/pre>)|(<pre.*?[^>]>)/', ' ', $temp);
+		$temp = preg_replace('/(<\/p>)|(<p>)/', ' ', $temp);
+		// $temp = htmlspecialchars_decode($temp , ENT_QUOTES);
+		$temp = html_entity_decode($temp,ENT_QUOTES);
+		//trim html&php tags
+		// $temp = strip_tags($temp);
+		return $temp;
+	}
+
 
