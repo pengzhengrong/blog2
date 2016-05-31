@@ -192,7 +192,7 @@ Class BlogController extends CommonController {
 		return $where;
 	}
 
-	private function blog_cache( $refresh = true){
+	private function blog_cache( $refresh = false){
 		$this->p = I('p',1,'intval');
 		$cache_key = 'BLOG_PAGE_'.$this->p;
 		
@@ -205,7 +205,7 @@ Class BlogController extends CommonController {
 		}else{
 			$limit = $page->firstRow.','.$page->listRows;
 			$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
-			S( $cache_key , $this->rest , 60 );
+			S( $cache_key , $this->rest , 60*3600 );
 		}
 		$this->page = $page->show();
 	}

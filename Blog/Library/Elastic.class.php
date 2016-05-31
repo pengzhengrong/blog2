@@ -21,7 +21,7 @@ Class Elastic {
 		$user = C('DB_USER'); 
 		$passwd = C('DB_PWD');
 		// $dsn = 'mysql:dbname=testdb;host=127.0.0.1';
-		$conn = new \PDO("mysql:dbname=$dbname;host=$host;charset=utf8",$user,$passwd); 
+		$conn = new \PDO("mysqli:dbname=$dbname;host=$host;charset=utf8",$user,$passwd); 
 		return $conn; 
 	} 
 	/**
@@ -248,6 +248,9 @@ Class Elastic {
 	 * @param array $params 
 	 */
 	private function setConfig( $params ){
+		if( empty($params) ){
+			return null;
+		}
 		foreach ($params as $key => $value) {
 			$config[$key] = $this->getParams($params , $key);
 		}
