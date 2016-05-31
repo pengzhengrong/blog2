@@ -1,11 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<link rel="stylesheet" href="__PUBLIC__/{$module_name}/Css/public.css" />
-	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-	<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
-	<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/login.js"></script>
-	{:baiduAccount()}
+<include  file="Blog/Home/View/Common/header.html" />
 </head>
 <body>
 	<div class="top"><a href="{:U(MODULE_NAME.'/User/add')}" >ADD</a></div>
@@ -32,13 +25,13 @@
 					</foreach>
 				</td>
 				<td>
-					<if  condition="$v['lock']==1">LOCK</if>
-					<if  condition="$v['lock']==0">UNLOCK</if>
+					<if  condition="$v['lock']==1">[LOCK]</if>
+					<if  condition="$v['lock']==0">[UNLOCK]</if>
 				</td>
 				<td>
-					<a href="{:U(MODULE_NAME.'/User/user_role',array('uid'=>$v['id']))}">ROLE</a>
-					<a href="{:U(MODULE_NAME.'/User/edit',array('uid'=>$v['id']))}">EDIT</a>
-					<a href="{:U(MODULE_NAME.'/User/delete',array('uid'=>$v['id']))}">DELETE</a>
+					<a href="{:U(MODULE_NAME.'/User/user_role',array('uid'=>$v['id']))}">[ROLE]</a>
+					<a href="{:U(MODULE_NAME.'/User/edit',array('uid'=>$v['id']))}">[EDIT]</a>
+					<a href="{:U(MODULE_NAME.'/User/delete',array('uid'=>$v['id']))}">[DELETE]</a>
 				</td>
 			</tr>
 		</foreach>

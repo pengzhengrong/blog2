@@ -14,14 +14,16 @@ public function _initialize(){
 public function index() {
 	$this->module_name = MODULE_NAME;
 	$rest = $this->search();
+	// p($rest);
 	$fields = array(
 		'id' => '_id',
 		'score' => '_score',
 		'title' => 'title',
-		'cat_id' => 'cat_id'
+		'cat_id' => 'cat_id',
+		'highlight' => 'highlight'
 		);
 	$this->rest = getSearch( $rest , $fields);
-	// p($rest);die;
+	// p($this->rest);die;
 	$this->display();
 }
 

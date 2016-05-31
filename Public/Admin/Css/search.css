@@ -1,0 +1,29 @@
+ul{
+			display: block;
+			list-style-type: disc;
+			-webkit-margin-before: 1em;
+			-webkit-margin-after: 1em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			-webkit-padding-start: 40px;
+		}
+		li{
+			position: relative;
+			padding-top: 30px;
+			padding-bottom: 30px;
+			list-style: none;
+			border-bottom: 1px solid #eee;
+		}
+		h3{
+			margin-top: 0;
+			margin-bottom: 0;
+			line-height: 1.5;
+			display: block;
+			font-size: 1.17em;
+			-webkit-margin-before: 1em;
+			-webkit-margin-after: 1em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			font-weight: bold;
+
+		}

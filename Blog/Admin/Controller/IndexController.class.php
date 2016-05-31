@@ -3,9 +3,13 @@ namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends CommonController {
 	public function index(){
-		$rest = M('category')->order('sort')->where('status=0')->select();
-		// $rest = A('Home/Cat')->cat_cache();
+		$rest = S('blog_cate');
+		if( !$rest ){
+			$rest = M('category')->order('sort')->where('status=0')->select();
+			S('blog_cate',$rest,C('DEFAULT_CACHE_TIME')) ;
+		}
 		$this->rest = node_merge( $rest );
+		// p($this->rest);die;
 		if( I('id') != null ){
 			foreach ($this->rest as $key => $value) {
 				if( $value['id'] == I('id') ){

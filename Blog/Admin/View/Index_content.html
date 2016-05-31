@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<head>
-	
-	<title>{$blog.title?$blog.title:BLOG}</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<include file="Blog/Admin/View/Common/header.html" title="CONTENT" />
 	
 	<link href="__PUBLIC__/Common/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="__PUBLIC__/Common/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="__PUBLIC__/Common/css/templatemo_style.css" rel="stylesheet" type="text/css">
-	<link href="__PUBLIC__/Common/css/common.css" rel="stylesheet" type="text/css">	
-	<script type="text/javascript" src="__PUBLIC__/Common/js/jquery-1.7.2.min.js"></script>
-	{:baiduAccount()}
 </head>
 <body>
 	
@@ -41,10 +31,13 @@
 					{$blog.content}	
 				</article>	
 			<else/>
-				<h1 class="templatemo-header">博主还未添加任何相关的内容</h1>
-				<article class="templatemo-item">
-					博主还未添加任何相关的内容,有意请邮件  <font color="red">{:C('EMAIL')}</font>
-				</article>
+				<div style="margin-top: 30px;">
+					<h1 class="templatemo-header">博主还未添加任何相关的内容</h1>
+					<article class="templatemo-item">
+						博主还未添加任何相关的内容,有意请邮件  <font color="red">{:C('EMAIL')}
+						</font>
+					</article>
+				</div>
 			</if>
 				
 				<hr>

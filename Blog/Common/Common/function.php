@@ -60,13 +60,16 @@ function getChildrens( $arr , $id ){
 }
 
 function getSearch( $rest ,$fields, $key='hits'){
-	// P($rest);die;
+	
 	$databack = array();
 	$rest = $rest[$key];
+	// P($rest);die;
 	if( $key == 'hits' ){
 		foreach ($rest['hits'] as  $k=>$v) {
 			foreach ($fields as $kk=>$vv) {
 				if( strpos($vv,'_') === 0){
+					$databack[$k][$kk] = $v[$vv];
+				}elseif( $kk=='highlight' ){
 					$databack[$k][$kk] = $v[$vv];
 				}else{
 					$databack[$k][$kk] = $v['fields'][$vv][0];
@@ -74,6 +77,6 @@ function getSearch( $rest ,$fields, $key='hits'){
 			}
 		}
 	}
-	// p($databack);die;
+	// P($databack);die;
 	return $databack;
 }

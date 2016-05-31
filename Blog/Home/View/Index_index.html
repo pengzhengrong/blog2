@@ -1,12 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/index.js"></script>
-<link rel="stylesheet" href="__PUBLIC__/Common/css/index.css" />
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<include file="Blog/Home/View/Common/header.html" title="BLOG" />
 <base target="iframe"/>
-<head>
-{:baiduAccount()}
 </head>
 <body>
 	<div id="top">
@@ -37,7 +30,7 @@
 		</dl>
 	</div>
 	<div id="right">
-		<iframe  style="border: none;width: 100%;" name="iframe" src=""></iframe>
+		<iframe  style="border: none;width: 100%;" name="iframe" src="{:U(MODULE_NAME.'/Index/welcome')}"></iframe>
 	</div>
 </body>
 </html>

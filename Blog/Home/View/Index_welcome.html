@@ -1,0 +1,39 @@
+<include file="Blog/Home/View/Common/header.html" title="Welcome" />
+</head>
+<style type="text/css">
+	.left h4{
+		width: 96%;
+		border-bottom: 1px solid #c7d8ea;
+		color: #3a6ea5;
+		/*background: url(../images/admin_img/x_bg.png) repeat-x left -42px;*/
+		height: 26px;
+		line-height: 28px;
+		padding: 0 10px;
+
+	}
+	.left {
+		border: 1px solid #c7d8ea;
+		zoom: 1;
+		width: 48%;
+	}
+	hr {
+		margin: 10px 10px;
+	}
+</style>
+<body>
+
+	<div class="left">
+		<h4>我的个人信息</h4>
+		<div class="content">
+			您好,{$username} <br>
+			所属角色：{$role}
+			<hr>
+			登录时间：{$login_time|date='Y-m-d H:i:s',###} <br>
+			登录IP：{$login_ip}
+		</div>
+	</div>
+	<div class="right">
+
+	</div>
+</body>
+</html>

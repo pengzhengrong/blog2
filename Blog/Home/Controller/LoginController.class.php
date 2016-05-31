@@ -36,12 +36,17 @@ class LoginController extends Controller {
             );
             $rest = M('user')->where($where)->fetchSql(false)->find();
             $rest || notice( 'Login failed','/login',1 );
-
-            // $time = C('SESSION_TIME');
-            // setcookie( session_name() , session_id() , $time );
-            // session( array( 'id'=>session_id('blog'),'name'=>session_name() ,'expire'=>24*3600 , 'path'=>'/index.php') );
             session( 'username' , $rest['username']);
             session( C('USER_AUTH_KEY'), $rest['id'] );
+
+            //update user login info
+             $login_ip = get_client_ip();
+             $data = array(
+                  'login_ip' => $login_ip,
+                  'login_time' => time(),
+                  'id' => $rest['id']
+             );
+            $user_rest = M('user')->data( $data )->save($data);
 
             if( in_array($rest['username'],  explode(',', C('RBAC_SUPERADMIN'))) )
               session( C('ADMIN_AUTH_KEY') , $rest['id'] );

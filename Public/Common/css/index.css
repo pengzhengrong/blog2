@@ -1,6 +1,6 @@
 @import url("public.css");
 /*html{overflow-y: hidden;}*/
-#top{height:80px;background:url("../Images/logo.png") #F1F1F1 10px 10px no-repeat; 
+#top{height:80px;background:url() #F1F1F1 10px 10px no-repeat; 
 padding-left:300px;border-bottom: solid 2px #666;overflow: hidden; position: relative;}
 #top .menu{margin-top:38px;}
 #top .menu a{padding:6px 15px;background:#eee;font-size:15px;font-weight: bold;color:#43434F;
