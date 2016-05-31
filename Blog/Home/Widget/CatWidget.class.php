@@ -37,15 +37,24 @@ Class CatWidget extends Controller {
 		
 	}
 
-	public function select( $cate , $cat_id=null ){
+	public function select( $cate , $cat_id=0 ){
 		// p( $cate );die;
 		 // echo '<select name="cat_id" >';
+/*		switch ($v['level']) {
+			case 0:
+				$color = 'red';
+				break;
+			
+			default:
+				$color = 'grey';
+				break;
+		}*/
 		foreach ($cate as  $v) {
 			$space = str_repeat( '&nbsp;', $v['level']*2);
 			// my_log( 'select',$cat_id);
+			$selected = '';
 			if( $v['id'] == $cat_id  ){ $selected = 'selected';}
 			echo "<option $selected value='".$v['id']."'>".$space.$v['title']."</option>";
-			$selected = '';
 			if( $v['child'] ){
 				$this->select( $v['child'] ,$cat_id);
 			}
