@@ -30,8 +30,8 @@ span.msg{color:#666;border:solid 1px #eee;padding:6px;margin-left:10px;}
 	font-size:12px;color:#666;PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px;
 	
 }
-.page .count,.page .nowpage{margin-right:10px;}
-.page .selfpage {
+.page .num,.page .nowpage{margin-right:10px;}
+.page .current {
 	background:#2E6AB1;color:#fff;BORDER-RIGHT: #9aafe5 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #9aafe5 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: #9aafe5 1px solid; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: #9aafe5 1px solid; TEXT-DECORATION: none
 }
 .page a {

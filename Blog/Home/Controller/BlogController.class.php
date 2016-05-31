@@ -150,11 +150,11 @@ Class BlogController extends CommonController {
 		// p($where);
 		$field = array('id','cat_id','title','click','created','sort','update_time');
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
-		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
+		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') );
 		// p( I('p',1,'intval') );
 		$limit = $page->firstRow.','.$page->listRows;
 		$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
-
+		$page->setConfig('theme',  "%HEADER% %UP_PAGE%  %FIRST% %LINK_PAGE% %END% %DOWN_PAGE%");
 		$this->page = $page->show();
 		// p($this->rest ); die;
 	}
@@ -199,7 +199,7 @@ Class BlogController extends CommonController {
 		$field = array('id','cat_id','title','click','created','sort','update_time');
 		$where=array('status'=>0) ;
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
-		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') , $url);
+		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') );
 		if( !$refresh && S($cache_key) ){
 			$this->rest = S( $cache_key );
 		}else{
@@ -207,6 +207,7 @@ Class BlogController extends CommonController {
 			$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
 			S( $cache_key , $this->rest , 60 );
 		}
+		$page->setConfig('theme',  "%HEADER% %UP_PAGE%  %FIRST% %LINK_PAGE% %END% %DOWN_PAGE%");
 		$this->page = $page->show();
 	}
 

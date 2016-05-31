@@ -141,6 +141,6 @@ class Page{
             array($this->config['header'], $this->nowPage, $up_page, $down_page, $the_first, $link_page, $the_end, $this->totalRows, $this->totalPages),
             $this->config['theme']);
         // echo $page_str;die;
-        return "<div>{$page_str}</div>";
+        return "<div class='page'>{$page_str}</div>";
     }
 }
