@@ -7,7 +7,7 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?e58ba1963b5a50dd007b97734b0dbfd8";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
@@ -33,7 +33,7 @@ function node_merge ( $node , $access = null , $pid=0) {
 function  p( $param ) {
 
 	if( is_array( $param )){
-		dump( $param ); 
+		dump( $param );
 		return;
 	}
 	echo $param."<br />";
@@ -46,8 +46,8 @@ function my_log( $key='' , $value=null ) {
 }
 
 /**
-@param $arr  
-@param $id  
+@param $arr
+@param $id
 */
 function getChildrens( $arr , $id ){
 	$databack = $id;
@@ -60,7 +60,7 @@ function getChildrens( $arr , $id ){
 }
 
 function getSearch( $rest ,$fields, $key='hits'){
-	
+
 	$databack = array();
 	$rest = $rest[$key];
 	// P($rest);die;
@@ -79,4 +79,15 @@ function getSearch( $rest ,$fields, $key='hits'){
 	}
 	// P($databack);die;
 	return $databack;
+}
+
+function cutHighlightContent( $content ,$len = 100){
+	// p($content);
+	// $content = '<em>hello</em>';
+	// $content = preg_replace('/.*?(<em>.*?<\/em>\S{20}).*/', '$1...' ,$content);
+	$mb_len = mb_detect_encoding($content) == 'UTF-8' ? 2 : 1;
+	// $content = preg_replace('/[\s\S]*(<em>.*?<\/em>[\s\S]{20})[\s\S]*/', '$1...' ,$content);
+	$content = preg_replace('/[\s\S]*(<em>.*?<\/em>([\x00-\x7f]|[\x80-\xff].{' . $mb_len . '}){'.$len.'})[\s\S]*/', '$1...' ,$content);
+	// p($content);die;
+	return $content;
 }

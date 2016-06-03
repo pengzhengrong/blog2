@@ -1,11 +1,11 @@
-<include file="Blog/Admin/View/Common/header.html" title="CONTENT" />
-	
+<include file="Blog/Admin/View/Common/header.html" title="{$blog['title']?$blog['title']:CONTENT}" />
+
 	<link href="__PUBLIC__/Common/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="__PUBLIC__/Common/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="__PUBLIC__/Common/css/templatemo_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	
+
 	<div class="templatemo-container">
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 white-bg right-container">
 			<h1 class="logo-left hidden-xs margin-bottom-60" >评论</h1>
@@ -21,15 +21,19 @@
 						<foreach name="blog.attr" item="v">
 							<span style="padding: 0px 5px;" >
 								<b>
-									<font  color="{$v.color}">{$v.title}</font>
+								<font  color="{$v.color}">
+									<span class="attr_title" id="{$blog.id}_{$v.id}">
+									{$v.title}
+									</span>({$v.attr_count})
+								</font>
 								</b>
 							</span>
 						</foreach>
 					</div>
-				</div>		
+				</div>
 				<article class="templatemo-item" id="article">
-					{$blog.content}	
-				</article>	
+					{$blog.content}
+				</article>
 			<else/>
 				<div style="margin-top: 30px;">
 					<h1 class="templatemo-header">博主还未添加任何相关的内容</h1>
@@ -39,7 +43,7 @@
 					</article>
 				</div>
 			</if>
-				
+
 				<hr>
 				<footer>
 					<p class="col-lg-6 col-md-6 col-sm-12 col-xs-12 templatemo-copyright">Copyright &copy; 2084  Welcome to hello2world.top</p>
@@ -51,11 +55,11 @@
 						<a href="#"><i class="fa fa-linkedin fa-medium"></i></a>
 					</p>
 				</footer>
-			</div>		
-			
+			</div>
+
 		</div> <!-- left section -->
 		<div style="display: none;" class="col-lg-6 col-md-6 col-sm-6 col-xs-12 black-bg left-container">
-			<h1 class="logo-right hidden-xs margin-bottom-60">Comment</h1>	
+			<h1 class="logo-right hidden-xs margin-bottom-60">Comment</h1>
 			<div class="tm-left-inner-container">
 				<ul class="nav nav-stacked templatemo-nav">
 				 <input class="btn btn-warning" type="button" value="抢沙发" id="comment" />
@@ -68,58 +72,18 @@
 			</div>
 		</div>
 		 <!-- right section -->
-	</div>	
+	</div>
 </body>
 <script type="text/javascript">
-$( function(){
-	$('pre').hide();
-	$('pre').before('<i class="iconfont showPre">&#xe605;</i>');
-	$('#article').on( 'click' , '.showPre' ,callback );
-	$('#article').on( 'click' , '.closePre' ,callback );
-	function callback(event){
-		// console.log( event );
-		$(event.currentTarget).next().toggle();
-		if( $(event.currentTarget).attr('class') == 'iconfont showPre' ){
-			$(event.currentTarget).html( '&#xe604;' );
-			$(event.currentTarget).attr('class','iconfont closePre');
-		}else{
-			$(event.currentTarget).html( '&#xe605;' );
-			$(event.currentTarget).attr('class','iconfont showPre');
-		}
-	}
-	$('#comment').click( function(){
-		var content = $('#comment_content').val();
-		$.ajax({
-			url: '{:U(MODULE_NAME.'/Comment/add','','')}',
-			type: 'POST',
-			data: {
-				'blog_id': {$blog.id},
-				'content': content
-			},
-			dataType: 'text',
-			success: function(data){
-				if( data == '0' ){
-					alert('请先登入!');	
-				}else if( data == '-1'){
-					alert('评论功能关闭!');
-				}else{
-					alert('发表评论成功!');
-					window.location.reload();
-				}
-			}
-		});
-	});	
-	$('.logo-left').click(function(){
-		$('.left-container').toggle();
-		var display = $('.left-container').css('display');
-		// console.log( display );
-		if( display == 'none' ){
-			$('.logo-left').css('margin-left','95%');
-		}else{
-			$('.logo-left').css('margin-left','65%');
-		}
-		
-	})
-});
+var add_url = '{:U(MODULE_NAME.'/Comment/add','','')}';
+// var blog_id = {$blog['id']?$blog['id']:0};
+var blog_id = {$blog.id};
+var attr_url = '{:U(MODULE_NAME.'/Index/attr','','')}';
 </script>
+<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/content.js"></script>
+<style type="text/css">
+.attr_title {
+	cursor: pointer;
+}
+</style>
 </html>

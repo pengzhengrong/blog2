@@ -11,12 +11,11 @@
 						<a href="{:U(MODULE_NAME.'/Nav/edit',array('id'=>$v['id']) ,'')}">EDIT</a>|
 						<a href="{:U(MODULE_NAME.'/Nav/delete','id='.$v['id'] ,'' )}">DELETE</a>
 					</p>
-				<foreach name="v.child" item="action" > 
+				<foreach name="v.child" item="action" >
 					<div class="action">
 						{$action.$name}
 						<a href="{:U(MODULE_NAME.'/Nav/edit',array('id'=>$action['id']) ,'')}">EDIT</a>|
 						<a href="{:U(MODULE_NAME.'/Nav/delete','id='.$action['id'] ,'' )}">DELETE</a>
-						
 					</div>
 				</foreach>
 				</div>

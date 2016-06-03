@@ -17,7 +17,7 @@ create table `think_cate_blog`(
    `cat_id` int(11) unsigned not null default 0,
   `blog_id` int(11) unsigned not null default 0,
   key `cat_id`(`cat_id`),
-  key `blog_id`(`blog_id`)  
+  key `blog_id`(`blog_id`)
 )engine=myisam default charset=utf8;
 
 create table `think_category`(
@@ -46,10 +46,14 @@ create table `think_attr`(
 create table `think_blog_attr`(
   `blog_id` int(11) not null default 0,
   `attr_id` int(11) not null default 0,
+  `attr_count` int(11) not null default 0,
+  `status` tinyint(1) not null default 0,
     KEY `group_id` (`blog_id`),
     KEY `attr_id` (`attr_id`)
 )engine=myisam default charset=utf8;
 -- alter table `think_blog_attr` delete index user_id;
+-- alter table `think_blog_attr` add `attr_count` int(11) not null default 0;
+-- alter table `think_blog_attr` add `status` tinyint(1) not null default 0;
 
 create table `think_user`(
   `id` int(11) not null  auto_increment,
@@ -59,7 +63,8 @@ create table `think_user`(
   `login_time` int(11) not null default 0,
   `lock` tinyint(1) not null default 0,
   primary key(`id`),
-  key(`username`)
+  key(`username`),
+  UNIQUE(`username`)
 )engine=myisam default charset=utf8 auto_increment=1;
 
 create table `think_navigation`(
@@ -95,9 +100,10 @@ create table `think_commenter`(
   `login_time` int(11) not null default 0,
   `login_ip` varchar(20) not null default '',
   `lock` tinyint(1) not null default 0,
-  key(`username`) 
+  key(`username`),
+  UNIQUE(`username`)
   )engine=myisam default charset=utf8 auto_increment=1;
-
+-- alter table think_commenter add index unique(`username`);
 create table `think_comment_count`(
   `comment_id` int(11) unsigned not null default 0,
   `comment` tinyint(1) not null default 0 comment'0 null ,1 perfect , 2 good ,3 just so so',

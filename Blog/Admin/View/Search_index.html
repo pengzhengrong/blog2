@@ -8,14 +8,17 @@
 		<foreach name="rest" item="v" >
 
 			<li>
-				<span><a href="content_{$v.cat_id}">{$v.title}</a></span>
+			<a href="content_{$v.cat_id}">
+				<span style="color: black;">{$v.title}</span><br>
 				<span>
 				<foreach name="v.highlight" item="h" >
-					{$h.content}
+					<foreach name="h" item="high" key="k"  >
+						{:cutHighlightContent($high)}<br>
+					</foreach>
 				</foreach>
 				</span>
+			</a>
 			</li>
-
 		</foreach>
 	</ul>
 </body>

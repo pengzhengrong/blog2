@@ -27,8 +27,6 @@ class LoginController extends Controller {
                     );
                 $rest = M('commenter')->where($where)->find();
                 $rest || $this->error('LOGIN FAILED');
-             session( array( 'id'=>session_id(),'name'=>session_name() , 'expire'=>3600*24 ,  ) );
-             // session( array( 'id'=>session_id(),'name'=>session_name() , 'expire'=>3600*24 , 'path'=> '/home/pzr/workspace/blog/'  ) );
      	session('username',I('username'));
                 if( C('URL_ROUTER_ON') )
                     $this->redirect('/blog');

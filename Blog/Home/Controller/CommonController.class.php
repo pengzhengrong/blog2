@@ -12,22 +12,22 @@ class CommonController extends Controller {
                                         $this->error('Please Login ',U('/login'));
                                    }else{
                                         $this->error('Please Login ',U(MODULE_NAME.'/Login/index'));
-                                   }  
+                                   }
       }
       $Rbac = new \Org\Util\Rbac;
       $handle = strpos( ACTION_NAME , '_' )>0?1:0;
-  $noAuth = in_array( CONTROLLER_NAME, explode( ',', C('NOT_AUTH_MODULE'))) 
+  $noAuth = in_array( CONTROLLER_NAME, explode( ',', C('NOT_AUTH_MODULE')))
     || in_array( ACTION_NAME , explode( ',', C('NOT_AUTH_ACTION')) )
     || $handle;
   // echo CONTROLLER_NAME.'-'.MODULE_NAME.'-'.ACTION_NAME."\n" ;
       if(  C('USER_AUTH_ON') && !$noAuth){
         $Rbac::saveAccessList();
         $rest = $Rbac::AccessDecision();
-        // var_dump($rest); 
+        // var_dump($rest);
         $rest || $this->error('NO MISSION');
        }
-      
-     } 
+
+     }
 
 
 }

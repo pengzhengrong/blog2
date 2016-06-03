@@ -1,6 +1,6 @@
 <?php
 namespace Library;
-require_once('vendor/autoload.php'); 
+require_once('vendor/autoload.php');
 Class Elastic {
 
 	public $client;
@@ -15,39 +15,39 @@ Class Elastic {
 		$this->config = $this->setConfig($config);
 	}
 
-	public function get_conn(){ 
-		$host = C('DB_HOST'); 
-		$dbname = C('DB_NAME'); 
-		$user = C('DB_USER'); 
+	public function get_conn(){
+		$host = C('DB_HOST');
+		$dbname = C('DB_NAME');
+		$user = C('DB_USER');
 		$passwd = C('DB_PWD');
 		// $dsn = 'mysql:dbname=testdb;host=127.0.0.1';
-		$conn = new \PDO("mysqli:dbname=$dbname;host=$host;charset=utf8",$user,$passwd); 
-		return $conn; 
-	} 
+		$conn = new \PDO("mysqli:dbname=$dbname;host=$host;charset=utf8",$user,$passwd);
+		return $conn;
+	}
 	/**
 	 * @param  $sql 同步的sql语句
 	 * @param  $fields ES字段
 	 * @param  string
 	 * @return [type]
 	 */
-	public function create_index( $sql , $fields , $conf=array() ){ 
-	//Elastic search php client 
-		// $this->client = new \Elasticsearch\Client(); 
-		// $sql = "SELECT * FROM log"; 
+	public function create_index( $sql , $fields , $conf=array() ){
+	//Elastic search php client
+		// $this->client = new \Elasticsearch\Client();
+		// $sql = "SELECT * FROM log";
 		$index = $this->getParams($conf , 'index');
 		$type = $this->getParams($conf , 'type');
-		$conn = $this->get_conn(); 
-		$stmt = $conn->query($sql); 
-		$rtn = $stmt->fetchAll(); 
+		$conn = $this->get_conn();
+		$stmt = $conn->query($sql);
+		$rtn = $stmt->fetchAll();
 	//delete index which already created
-		/*$params = array(); 
+		/*$params = array();
 		$index = empty($index)?C('DEFAULT_INDEX'):$index;
-		$params['index'] = $index; 
+		$params['index'] = $index;
 		$this->client->indices()->delete($params); */
-	//create index on log_date,src_ip,dest_ip 
+	//create index on log_date,src_ip,dest_ip
 		$rtnCount = count($rtn);
-		for($i=0;$i<$rtnCount;$i++){ 
-			$params = array(); 
+		for($i=0;$i<$rtnCount;$i++){
+			$params = array();
 			foreach ($fields as $k => $v) {
 				if( $v == 'id' ){
 					$params['id'] = $rtn[$i][$v];
@@ -55,19 +55,19 @@ Class Elastic {
 				}
 				$params['body'][$v] = $rtn[$i][$v];
 			}
-			/*$params['body'] = array( 
-				'id' => $rtn[$i]['id'], 
-				'cat_id' => $rtn[$i]['cat_id'], 
-				'title' => $rtn[$i]['title'] 
+			/*$params['body'] = array(
+				'id' => $rtn[$i]['id'],
+				'cat_id' => $rtn[$i]['cat_id'],
+				'title' => $rtn[$i]['title']
 				); */
-			$params['index'] = $index; 
+			$params['index'] = $index;
 			$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
 			// p($params); die;
-		//Document will be indexed to log_index/log_type/autogenerate_id 
-			$this->client->index($params); 
-		} 
-		// echo 'create index done!'; 
-		// return $rtnCount; 
+		//Document will be indexed to log_index/log_type/autogenerate_id
+			$this->client->index($params);
+		}
+		// echo 'create index done!';
+		// return $rtnCount;
 		$databack = array(
 			'status'=>200,
 			'msg' => 'ok',
@@ -75,7 +75,7 @@ Class Elastic {
 			);
 		 header('Content-Type:application/json; charset=utf-8');
                 	exit(json_encode($databack));
-	} 
+	}
 
 	public function update_index($params){
 
@@ -87,14 +87,14 @@ Class Elastic {
 		$id = $this->getParams($conf, 'id');
 		if( empty($id) )
 			notice('ES create failed',1);
-		$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index; 
+		$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index;
 		$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
 		$params['id'] = $id;
 		foreach ($fields as $k => $v) {
 			$params['body'][$k] = $v;
 		}
 		// p($params);die;
-		$data = $this->client->index($params); 
+		$data = $this->client->index($params);
 		return $data;
 	}
 
@@ -102,8 +102,8 @@ Class Elastic {
 		$index = $this->getParams($conf , 'index');
 		$type = $this->getParams($conf , 'type');
 		$rtnCount = count($rtn);
-		for($i=0;$i<$rtnCount;$i++){ 
-			$params = array(); 
+		for($i=0;$i<$rtnCount;$i++){
+			$params = array();
 			foreach ($fields as $k => $v) {
 				if( $v == 'id' ){
 					$params['id'] = $rtn[$i][$v];
@@ -111,17 +111,17 @@ Class Elastic {
 				}
 				$params['body'][$v] = $rtn[$i][$v];
 			}
-			/*$params['body'] = array( 
-				'id' => $rtn[$i]['id'], 
-				'cat_id' => $rtn[$i]['cat_id'], 
-				'title' => $rtn[$i]['title'] 
+			/*$params['body'] = array(
+				'id' => $rtn[$i]['id'],
+				'cat_id' => $rtn[$i]['cat_id'],
+				'title' => $rtn[$i]['title']
 				); */
-			$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index; 
+			$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index;
 			$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
 			// p($params); die;
-		//Document will be indexed to log_index/log_type/autogenerate_id 
-			$this->client->index($params); 
-		} 
+		//Document will be indexed to log_index/log_type/autogenerate_id
+			$this->client->index($params);
+		}
 		$databack = array(
 			'status'=>200,
 			'msg' => 'ok',
@@ -142,11 +142,11 @@ Class Elastic {
 	/**
 	 * 和match_phrase查询几乎一样.但是它允许查询文本的最后一个单词只做前缀匹配.
 	 * @param  $index ,$type,
-	 * @param  $slop: 词条和词条之间允许的未知词条数 
+	 * @param  $slop: 词条和词条之间允许的未知词条数
 	 * @param  $max_expansions: 定义了有多少前缀将被重写成最后的词条.
 	 * @param  $highlight : true || false
-	 * @param  $operator : and || or(default) 
-	 * @return 
+	 * @param  $operator : and || or(default)
+	 * @return
 	 */
 	public function match_phrase_prefix_search( $params ){
 		// p($params);die;
@@ -178,7 +178,7 @@ Class Elastic {
 					'fields' => array( 'content' => (object)array() )
 					)*/
 				)
-			); 
+			);
 		$databack = $this->query_common_search( $databack , $params );
 		return $databack;
 	}
@@ -198,10 +198,12 @@ Class Elastic {
 			'type' => empty($type)?C('DEFAULT_TYPE'):$type,
 			'body' => array(
 				'query' => array(
-					'query_string' => array( 
+					'query_string' => array(
 						'query' => "$search_value" ,
 						'phrase_slop' => empty($slop)?C('SLOP'):$slop,
-						'default_operator' => empty($operator)?'or':$operator
+						'default_operator' => empty($operator)?'or':$operator,
+						// 'minimum_should_match' => 6,
+						// 'lenient' => true
 						)
 					)
 				)
@@ -214,6 +216,7 @@ Class Elastic {
 	}
 
 	private function query_common_search( $databack , $params ){
+		$search_key = $this->getParams( $params, 'search_key' );
 		$highlight = $this->getParams($params , 'highlight');
 		$fields = $this->getParams($params, 'fields');
 		$highlight_fields = $this->getParams( $params , 'highlight_fields' );
@@ -223,8 +226,8 @@ Class Elastic {
 		if( $highlight ){
 			$databack['body']['highlight'] = array(
 					'term_vector' => "with_positions_offsets",
-					'fields' => array( 
-						$search_key => (object)array() 
+					'fields' => array(
+						$search_key =>array('fragment_size' => 20)
 						)
 					);
 			if( $highlight_fields ){
@@ -245,7 +248,7 @@ Class Elastic {
 		return $params[$key];
 	}
 	/**
-	 * @param array $params 
+	 * @param array $params
 	 */
 	private function setConfig( $params ){
 		if( empty($params) ){

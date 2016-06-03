@@ -9,7 +9,7 @@
 		<div id="top">
 
 		</div>
-		<div class="login">	
+		<div class="login">
 			<form action="{:U(MODULE_NAME.'/Login/handle')}" method="post" id="login">
 			<div class="title">
 				Blog | 登录后台
@@ -30,7 +30,7 @@
 				<tr>
 					<th>验证码:</th>
 					<td>
-						<input type="code" class="len250" name="code"/> 
+						<input type="code" class="len250" name="code"/>
 						<img src="{:U(MODULE_NAME.'/Login/verify')}" id="code" />
 						 <a href="javascript:void();"  onclick="change_code(this)">看不清</a>
 					</td>

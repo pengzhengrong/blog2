@@ -20,7 +20,7 @@ Class UserController extends CommonController {
 			'username' => I('username'),
 			'password' => I('passwd','','md5'),
 			'login_ip' => $login_ip,
-			'login_time' => $login_time 
+			'login_time' => $login_time
 			);
 		$rest = M('user')->data( $data )->add();
 		$rest || $this->error('INSERT FAILED');
@@ -71,7 +71,7 @@ Class UserController extends CommonController {
 		$this->redirect( 'index' );
 	}
 
-	public function user_delete(){ 
+	public function user_delete(){
 		$uid = I('uid');
 		D('UserRelation')->relation(true)->delete( $uid );
 		// D('UserRelation')->relation(true)->where(array('user_id'=>$uid))->delete();

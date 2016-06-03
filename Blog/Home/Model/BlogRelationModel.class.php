@@ -40,8 +40,9 @@ Class BlogRelationModel extends RelationModel {
 			'foreign_key' => 'blog_id',
 			'relation_foreign_key' => 'attr_id',
 			'relation_table' => 'think_blog_attr',
-			'mapping_fields' => 'id,title,color',
+			'mapping_fields' => 'id,title,color,status,attr_count',
 			'mapping_order' => 'sort',
+			'condition' => 'status=0',
 			)
 		);
 

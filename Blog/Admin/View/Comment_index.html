@@ -4,97 +4,31 @@
 	.iconfont{
 		cursor: pointer;
 	}
-	ul li,hr{
+	ul li{
 		list-style-type: none;
-		margin-left: -36px;
+		margin-left: 0px;
 	}
 	ul span{
 		padding: 5px 5px;
+		font-size: 14px;
 	}
 </style>
 <body>
-<div>
-<font color="{:fontColor()}">总共评论{:count($comment)}</font>
-<ul id="ul_id">
-{:W('Comment/unlimitComments',array($comment))}
-</ul>
-</div>
+	<div>
+		<font color="{:fontColor()}">总共评论{:count($comment)}</font>
+		<ul id="ul_id">
+			{:W('Comment/unlimitComments',array($comment))}
+		</ul>
+	</div>
 </body>
+
 <script type="text/javascript">
-
-function showComment(id){
-	// alert(id);
-	$('.comment_'+id).toggle();
-}
-
-function vote_comment(id,type){
-		// alert(id+' '+type);
-		$.ajax({
-			url: '{:U(MODULE_NAME.'/Comment/vote','','')}',
-			type: 'POST',
-			data:{
-				'id': id,
-				'type': type
-			},
-			dataType: 'text',
-			success: function(data){
-				if( data == '-1'){
-					alert('u had voted!');
-				}else if( data == '0'){
-					alert('vote failed!');
-				}else{
-					alert('3q4u vote!');
-					window.location.reload();
-				}
-			}
-		});
-	}
-
-$( function(){
-
-	$('#ul_id').on("click",".reply",handleFun);
-	function handleFun(event){
-		$('.comment-content').remove();
-		var ev = event.target;
-		var data_id = ev.id;
-		var title = $('#'+data_id).attr('title');
-		// alert(title);return;
-		var content_text =  '<span  class="comment-content"><textarea id="content"  placeholder="回复'+title+':" name="content"></textarea>'+
-		'<br><button class="btn" id="comment">回复</span>';
-		$(ev).after( content_text);
-
-		$('#comment').click( function(){
-		var content = $('#content').val();
-		// alert(data_id+'  '+content);
-		$.ajax({
-			url: '{:U(MODULE_NAME.'/Comment/add','','')}',
-			type: 'POST',
-			data: {
-				'blog_id': {$blog_id},
-				'content': content,
-				'pid': data_id
-			},
-			dataType: 'text',
-			success: function(data){
-				// alert(data);
-				if( data != '0'){
-					alert('发表评论成功!');
-					window.location.reload();
-
-				}else{
-					// alert('发表评论失败!');
-					alert('请先登入!');
-				}
-			}
-		});
-	});	
-	}
-
-
-
-
-	
-	
-});
+	var url_obj = {
+		'vote_url':'{:U(MODULE_NAME.'/Comment/vote','','')}',
+		'add_url':'{:U(MODULE_NAME.'/Comment/add','','')}'
+	};
+// var blog_id = {$blog['id']?$blog['id']:0};
+var blog_id = {$blog_id};
 </script>
+<script type="text/javascript" src="__PUBLIC__/{$module_name}/Js/comment.js"></script>
 </html>

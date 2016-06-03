@@ -10,7 +10,7 @@ public function _initialize(){
 	$param = C('DEFAULT_HOST');
 	$this->elastic = new \Library\Elastic($param);
 }
-	
+
 public function index() {
 	$this->module_name = MODULE_NAME;
 	$rest = $this->search();
@@ -27,10 +27,10 @@ public function index() {
 	$this->display();
 }
 
-public function search(){ 
-		//Elastic search php client 
+public function search(){
+		//Elastic search php client
 		$search_value = I('search_key');
-		
+
 		$params_arr = array(
 			'index' => 'test',
 			'type' => 'think_blog',
@@ -38,25 +38,25 @@ public function search(){
 			'search_value' => $search_value,
 			'search_key' => 'content',
 			'max_expansions' => 20,
-			// 'slop' => 0, 
-			// 'operator' => 'and',	
+			// 'slop' => 0,
+			// 'operator' => 'and',
 			'highlight' => true,
 			'highlight_fields' => array(
-				'title' => array(),
-				'content' => array( 'pre_tags'=>array('<b>'),'post_tags'=>array('</b>') )
+				'title' => array('fragment_size' => 10),
+				'content' => array( 'pre_tags'=>array('<em>'),'post_tags'=>array('</em>'),'fragment_size' => 10 )
 				),
 			'search_fields' => array('title','content'), //query_string
-			); 
+			);
 		// $params = $this->elastic->match_phrase_prefix_search($params_arr);
-		
-		// $rtn = $this->elastic->search($params); 
+
+		// $rtn = $this->elastic->search($params);
 
 		$params = $this->elastic->query_string_search($params_arr);
 		// p($params);die;
 		$rtn = $this->elastic->search($params);
 
-		// var_dump($rtn); 
+		// var_dump($rtn);
 		return $rtn;
-	} 
+	}
 
 }
