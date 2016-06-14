@@ -21,12 +21,12 @@ class Dispatcher {
      * @return void
      */
     static public function dispatch() {
-        $varPath        =   C('VAR_PATHINFO');
-        $varAddon       =   C('VAR_ADDON');
-        $varModule      =   C('VAR_MODULE');
-        $varController  =   C('VAR_CONTROLLER');
-        $varAction      =   C('VAR_ACTION');
-        $urlCase        =   C('URL_CASE_INSENSITIVE');
+        $varPath        =   C('VAR_PATHINFO');  //s
+        $varAddon       =   C('VAR_ADDON');  //'addon',     // 默认的插件控制器命名空间变量
+        $varModule      =   C('VAR_MODULE');  //m
+        $varController  =   C('VAR_CONTROLLER');  //c
+        $varAction      =   C('VAR_ACTION');  //a
+        $urlCase        =   C('URL_CASE_INSENSITIVE');  //true
         if(isset($_GET[$varPath])) { // 判断URL里面是否有兼容模式参数
             $_SERVER['PATH_INFO'] = $_GET[$varPath];
             unset($_GET[$varPath]);
@@ -64,7 +64,7 @@ class Dispatcher {
                     }
                 }                
             }
-            my_log( 'rule' , $rule );
+            // my_log( 'rule' , $rule );
 
             if(!empty($rule)) {
                 // 子域名部署规则 '子域名'=>array('模块名[/控制器名]','var1=a&var2=b');

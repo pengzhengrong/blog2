@@ -7,6 +7,7 @@ require_once('Blog/Library/vendor/autoload.php');
 Class BlogController extends CommonController {
 
 	public $elastic;
+
 	public function _initialize(){
 		$param = C('DEFAULT_HOST');
 		$this->client = new \Elasticsearch\Client($param);
@@ -34,23 +35,7 @@ Class BlogController extends CommonController {
 			$rest = M('blog')->add( $data );
 			// my_log( 'id' , $rest );
 			$rest || $this->error( 'INSERT ERROR' );
-			$this->blog_cache(true);
-			if( C('ELASTIC_ON') ){
-				$fields = array(
-					'content' => dataclean($data['content']),
-					'title' => $data['title'],
-					'status' => 0,
-					'cat_id' => I('cat_id')
-					);
-				$params = array(
-					'id' => $rest
-					);
-				// p($fields);die;
-				$rst = $this->elastic->create_index_one($fields , $params);
-				if( empty($rst['_id']) ){
-					//log
-				}
-			}
+			$this->blog_cache(true , 'add');
 			$cate_blog = array(
 				'cat_id' => I('cat_id'),
 				'blog_id' => $rest
@@ -59,9 +44,9 @@ Class BlogController extends CommonController {
 			$result || $this->error( 'BLOG RELATION CATEGORY FAILED' );
 			$attr_ids = I('attr_id');
 			$this->insert_blog_attr( $rest );
-			$this->update_blog_attr( $attr_ids , $rest );
+			$this->build_blog_attr( $attr_ids , $rest );
 			// p($rst);die;
-			$this->redirect( 'index');
+			$this->redirect( 'index',array('p'=>$this->p));
 			return;
 		}
 		$this->get_cat_attr();
@@ -75,29 +60,28 @@ Class BlogController extends CommonController {
 			$data['update_time'] = time();
 			// p( $data );die;
 			$rest = M('blog')->save($data);
-			//update ES
-			if( C('ELASTIC_ON') ){
-				$content = dataclean($data['content']);
-				$this->update_index($data['id'] , $data['content']);
-			}
 
 			$rest || $this->error( 'UPDATE FAILED' );
 			$delete = M('blog_attr')->where(array('blog_id'=>I('id')))->save(array('status'=>1));
 			// $delete || $this->error('DELETE BLOG ATTR '.I('id').' FAILED');
 			$this->update_or_insert_attr(I('attr_id',0,'intval') , I('id'));
 			$this->blog_cache(true);
-			$this->redirect('index');
+			$this->redirect('index',array('p'=>I('p')));
 			return;
 		}
 
 		$this->rest = D('BlogRelation')->relation(true)->find(I('id'));
 		// p( $this->rest ); die;
-
 		$this->get_cat_attr();
 		$this->display();
 	}
 
+	/**
+	* 删除博客
+	* 彻底删除,恢复删除,逻辑删除
+	 */
 	public function delete() {
+		//彻底删除
 		if( I('delete') != null ){
 			notice( 'Delete And Can\'t Reback ,Confirm?' );
 			$rest = M('blog')->delete(I('id'));
@@ -106,36 +90,31 @@ Class BlogController extends CommonController {
 			$this->redirect('gc');
 			return;
 		}
+		//恢复删除
 		if( I('reback') != null ){
 			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0) );
 			$rest || $this->error( 'REBACK FAILED',1 );
-			if( C('ELASTIC_ON') ){
-				@$this->update_index(I('id'),0,'status');
-			}
-			$this->blog_cache(true);
+			$this->blog_cache();
 			$this->redirect('gc');
 		}
+		//逻辑删除
 		notice( 'Confirm to Delete Blog?' );
 		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
 		$rest || $this->error( 'GC FAILED',1 );
-		if( C('ELASTIC_ON') ){
-			@$this->update_index(I('id'),1,'status');
-		}
-		$this->blog_cache(true);
-		$this->redirect('index');
+		// \Think\Log::write('logic delete blog'.I('id'),'INFO','File','/tmp/blog.log');
+		// \Think\Log::record('logic delete blog'.I('id'),'INFO');
+		// \Think\Log::save('File','/tmp/blog.log');
+		$this->blog_cache(true,'delete');
+		$this->redirect('index',array('p'=>I('p')));
 	}
 
+	/**
+	 * 
+	 * @param  [type] $blog_id [description]
+	 * @return [type]          [description]
+	 */
 	public function  _after_delete( $blog_id ) {
 		$rest = M('blog_comment')->where( array('blog_id'=>I('id')) )->delete();
-		if( C('ELASTIC_ON') ){
-			$params = array(
-				'index' => C('DEFAULT_INDEX'),
-				'type' => C('DEFAULT_TYPE'),
-				'id' => I('id')
-				);
-			$data = $this->elastic->delete($params);
-			//log
-		}
 		// $rest || $this->error('BLOG COMMENT DELETE FAILED');
 	}
 
@@ -229,20 +208,53 @@ Class BlogController extends CommonController {
 		return $where;
 	}
 
-	private function blog_cache( $refresh = false){
-		$this->p = I('p',1,'intval');
-		// echo $this->p;
-		$cache_key = 'BLOG_PAGE_'.$this->p;
-
+	/**
+	 * 博客缓存
+	 * @param  boolean $refresh [description]
+	 * @param  [type]  $operate [description]
+	 * @return [type]           [description]
+	 */
+	private function blog_cache( $refresh = false , $operate=null){
 		$field = array('id','cat_id','title','click','created','sort','update_time');
 		$where=array('status'=>0) ;
 		$totalRows = D('BlogRelation')->relation(true)->where( $where )->count();
+
+		switch ($operate) {
+			case 'add':
+				$result = $totalRows%C('PAGE_SIZE');
+				$pageSize = intval($totalRows/C('PAGE_SIZE'));
+				$p = $result==0?$pageSize:$pageSize+1;
+				// $_GET['p'] = $p;
+				break;
+			case 'delete':
+				$p2 = I('p',1,'intval');
+				while( 1 ) {
+					$p2++;
+					$cache_key = 'BLOG_PAGE_'.$p2;
+					// P($cache_key);
+					if(empty(S($cache_key))) {
+						break;
+					}
+					S($cache_key,null);
+				}
+				break;
+			default:
+				$p = I('p',1,'intval');
+				break;
+		}
+		$_GET['p'] = $p;
 		$page = new \Think\Page( $totalRows , C('PAGE_SIZE') );
+		$this->p = $p;
+		// P($this->p); die;
+		$cache_key = 'BLOG_PAGE_'.$this->p;
+
 		if( !$refresh && S($cache_key) ){
 			$this->rest = S( $cache_key );
 		}else{
 			$limit = $page->firstRow.','.$page->listRows;
-			$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->limit($limit)->select();
+			// P($limit);die;
+			$this->rest = D('BlogRelation')->relation(true)->field($field)->where($where)->order('created')->limit($limit)->fetchSql(false)->select();
+			// P($this->rest); die;
 			S( $cache_key , $this->rest , 60*3600 );
 		}
 		$page->setConfig('theme',  "%HEADER% %UP_PAGE%  %FIRST% %LINK_PAGE% %END% %DOWN_PAGE%");
@@ -264,7 +276,7 @@ Class BlogController extends CommonController {
 	}
 
 	public function build_blog_attr(){
-		$rest = M('blog')->fields('id')->select();
+		$rest = M('blog')->field('id')->select();
 		// $ids = implode(',', $rest);
 		M('blog_attr')->delete();
 		$values = array();

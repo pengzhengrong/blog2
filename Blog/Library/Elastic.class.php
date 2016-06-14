@@ -20,7 +20,8 @@ Class Elastic {
 		$dbname = C('DB_NAME');
 		$user = C('DB_USER');
 		$passwd = C('DB_PWD');
-		// $dsn = 'mysql:dbname=testdb;host=127.0.0.1';
+		// $dsn = 'mysql:dbname=test;host=127.0.0.1';
+		// mysqli:dbname=test;host=127.0.0.1;charset=utf8
 		$conn = new \PDO("mysqli:dbname=$dbname;host=$host;charset=utf8",$user,$passwd);
 		return $conn;
 	}

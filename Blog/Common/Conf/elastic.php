@@ -5,5 +5,5 @@ return array(
 	'DEFAULT_TYPE' => 'think_blog',
 	'DEFAULT_HOST' => array('hosts' => array('127.0.0.1:9203')),
 	'MAX_EXPANSIONS' => 20,
-	'SLOP' => 3,	
+	'SLOP' => 3,
 	);

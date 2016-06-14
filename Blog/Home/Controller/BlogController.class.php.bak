@@ -1,0 +1,37 @@
+<?php
+
+namespace Home\Controller;
+use Library;
+require_once('Blog/Library/vendor/autoload.php');
+Class BlogController extends CommonController {
+
+	public $elastic;
+
+	Public function _initialize() {
+		$param = C('DEFAULT_HOST');
+		$this->elastic = new \Library\Elastic($param);
+	}
+
+	Public function index() {
+
+	}
+
+	Public function add() {
+
+	}
+
+	Public function delete() {
+
+	}
+
+	Public function gc() {
+
+	}
+
+	private function get_cat_attr(){
+		$this->cate = A('Cat')->cat_cache();
+		$this->category = node_merge( $this->cate );
+		$this->attr = A('Attr')->attr_cache();
+	}
+
+}

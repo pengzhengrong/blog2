@@ -18,5 +18,5 @@ return array(
 	'NAVIGATION' => 'zn_name', // nav show en or zn
 	// 'DEFAULT_CACHE_TIME' => 3600*24,
 
-	'ELASTIC_ON' => true,
+	'ELASTIC_ON' => false,
 );

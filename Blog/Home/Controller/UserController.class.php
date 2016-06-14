@@ -13,18 +13,21 @@ Class UserController extends CommonController {
 
 	public function  add() {
 		// p($_POST); exit;
-		$login_ip = get_client_ip();
-		// p( $login_ip );die;
-		$login_time = time();
-		$data = array(
-			'username' => I('username'),
-			'password' => I('passwd','','md5'),
-			'login_ip' => $login_ip,
-			'login_time' => $login_time
-			);
-		$rest = M('user')->data( $data )->add();
-		$rest || $this->error('INSERT FAILED');
-		$this->success('INSERT SUCCESS',MODULE_NAME.'/User/index');
+		if( IS_POST ) {
+			$login_ip = get_client_ip();
+			// p( $login_ip );die;
+			$login_time = time();
+			$data = array(
+				'username' => I('username'),
+				'password' => I('passwd','','md5'),
+				'login_ip' => $login_ip,
+				'login_time' => $login_time
+				);
+			$rest = M('user')->data( $data )->add();
+			$rest || $this->error('INSERT FAILED');
+			$this->success('INSERT SUCCESS',MODULE_NAME.'/User/index');
+		}
+		$this->display();
 	}
 
 	public function edit() {
@@ -71,7 +74,7 @@ Class UserController extends CommonController {
 		$this->redirect( 'index' );
 	}
 
-	public function user_delete(){
+	public function delete(){
 		$uid = I('uid');
 		D('UserRelation')->relation(true)->delete( $uid );
 		// D('UserRelation')->relation(true)->where(array('user_id'=>$uid))->delete();
