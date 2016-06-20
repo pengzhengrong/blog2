@@ -22,6 +22,6 @@ return array(
 	    'DB_PREFIX' => 'think_',
 
 	    'LOAD_EXT_CONFIG' => 'elastic',
-
+	    'SHOW_PAGE_TRACE' => true,
 	 
 );

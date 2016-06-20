@@ -107,7 +107,7 @@ a:hover{
 	color: #000;
 }
 
-div, a, p, img, blockquote, form, fieldset, textarea, input, label, iframe, code, pre {
+div, a ,p, img, blockquote, form, fieldset, textarea, input, label, iframe, code, pre {
 	display: block;
 	position:relative;
 	overflow:hidden;

@@ -20,3 +20,13 @@ function getSearch( $rest ,$fields, $key='hits'){
 	// P($databack);die;
 	return $databack;
 }
+
+function getChildrens( $arr , $id ){
+	$databack = $id;
+	foreach ($arr as $key => $value) {
+		if( $value['pid'] == $id ){
+			$databack .=  ','.getChildrens( $arr , $value['id'] );
+		}
+	}
+	return $databack;
+}

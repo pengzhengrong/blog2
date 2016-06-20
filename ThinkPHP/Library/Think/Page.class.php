@@ -20,7 +20,7 @@ class Page{
 	public $lastSuffix = true; // 最后一页是否显示总页数
 
     private $p       = 'p'; //分页参数名
-    private $url     = ''; //当前链接URL
+    public $url     = ''; //当前链接URL
     public $nowPage = 1;
 
 	// 分页显示定制
@@ -79,7 +79,13 @@ class Page{
 
         /* 生成URL */
         $this->parameter[$this->p] = '[PAGE]';
-        $this->url = U(ACTION_NAME, $this->parameter);
+        if( empty($this->url) ){
+            $this->url = U(ACTION_NAME, $this->parameter);
+        }
+        // if( C('URL_ROUTER_ON') ) {
+            
+        // }
+        // P($this->url);die;
         /* 计算分页信息 */
         $this->totalPages = ceil($this->totalRows / $this->listRows); //总页数
         if(!empty($this->totalPages) && $this->nowPage > $this->totalPages) {

@@ -8,13 +8,14 @@ class IndexController extends Controller {
 		// print_r(TMPL_PATH);
 	 }*/
 
+	 public $ids = array();
+
 	 Public function _initialize() {
 	 	define('CACHE_TIME',empty(C('CACHE_TIME')?60:C('CACHE_TIME')));
-	 	$this->cate = $this->category();
+	 	$this->cate = $this->getCategory();
 	 }
 
 	 Public function page_blog() {
-	 	
 	 	$where = array(
 	 		'status' => 0,
 	 		);
@@ -22,12 +23,10 @@ class IndexController extends Controller {
 	 	$count = M('blog')->where($where)->fetchSql(false)->count();
 	 	$pageSize = I('n',C('PAGE_SIZE'),'intval');
 	 	$page = new \Think\Page($count,$pageSize);
+	 	$page->url = '/'.ACTION_NAME.'?p='.urlencode('[PAGE]');
 	 	$limit = $page->firstRow.','.$page->listRows;
 	 	// P($limit);die;
-	 	$rest = M('blog')->field($fields)->where($where)->order('created desc')->limit($limit)->fetchSql(false)->select();
-	 	foreach ($rest as $k=>$v) {
-	 		$rest[$k]['url'] = '/blog_'.$v['id'];
-	 	}
+	 	$rest = M('blog')->cache(true,CACHE_TIME)->field($fields)->where($where)->order('created desc')->limit($limit)->fetchSql(false)->select();
 	 	// P($rest);die;
 	 	$this->rest = $rest;
 	 	$page->setConfig('theme',  "%HEADER% %UP_PAGE%  %FIRST% %LINK_PAGE% %END% %DOWN_PAGE%");
@@ -36,14 +35,31 @@ class IndexController extends Controller {
 	 	$this->display();
 	 }
 
+	 /**
+	  * 栏目列表
+	  * @return [type] [description]
+	  */
+	 Public function category() {
+	 	$id= I('id',0,'intval');
+	 	$cate = M('category')->field(array('id','pid'))->where('status=0')->select();
+	 	// P($cate);
+	 	$ids = getChildrens($cate,$id);
+	 	// P($ids);die;
+	 	$rest = M('blog')->cache(true,CACHE_TIME)->field(array('id','title','content','created'))->where("status=0 AND cat_id in ($ids)")->order('created desc')->select();
+	 	$this->rest = $rest;
+	 	$this->display();
+	 	// P($blog);die;
+	 }
+
 	 Public function blog() {
 	 	$id = I('id',0,'intval');
 	 	$this->rest = M('blog')->find($id);
 	 	// P($rest);
+	 	$this->get_next_prev($id);
 	 	$this->display();
 	 }
 
-	 Public function category() {
+	 Public function getCategory() {
 	 	$cacheKey = 'CATE_CACHE';
 	 	if( S($cacheKey) ) {
 	 		return S($cacheKey);
@@ -55,8 +71,6 @@ class IndexController extends Controller {
 	 	$fields = array('id','title');
 	 	$rest = M('category')->field($fields)->where($where)->order('sort')->select();
 	 	S($cacheKey,$rest,C('CACHE_TIME'));
-	 	// P($rest);die;
-	 	// $this->display();
 	 	return $rest;
 	 }
 
@@ -68,19 +82,32 @@ class IndexController extends Controller {
 		$search_value = I('search_key');
 		$this->search_key = $search_value;
 		$params = $this->query_string($search_value);
-		
-		
+
 		$rtn = $elastic->search($params);
 		$fields = array(
 		'id' => '_id',
 		'score' => '_score',
 		'title' => 'title',
 		'cat_id' => 'cat_id',
-		'highlight' => 'highlight'
+		'highlight' => 'highlight',
+		'created' => 'created'
 		);
 		$this->rest = getSearch( $rtn , $fields);
 		// P($this->rest); die;
-		$this->display(); 
+		$this->display();
+	 }
+
+	 Private function get_next_prev($id) {
+	 	$rest = M('blog')->cache(true,CACHE_TIME)->field(array('id','title'))->where('status=0')->order('created desc')->select();
+	 	// P($rest);
+	 	foreach ($rest as $k => $v) {
+	 		if( $v['id'] == $id ) {
+	 			$this->prev = $rest[$k-1];
+	 			$this->next = $rest[$k+1];
+	 		}
+	 	}
+	 	// return $rest;
+	 	return;
 	 }
 
 	 Private function query_string($search_value) {
@@ -110,7 +137,7 @@ class IndexController extends Controller {
 		 					)
 		 				)
 	 			),
-	 			'fields' => array('title','id','cat_id')
+	 			'fields' => array('title','id','cat_id','created')
 
 	 		)
 
@@ -152,9 +179,9 @@ class IndexController extends Controller {
 		p($params);
 		$rtn = $elastic->search($params);
 			*/
-		
+
 		// var_dump($rtn);
-		
+
 		// return $rtn;
 		/*$data = array(
 			'status' => 200,

@@ -3,7 +3,7 @@
 
 Project:	 SlideOut
 Version:	 1.0
-Primary Use: Site Template 
+Primary Use: Site Template
 Layout:      Responsive
 Platforms:   Mobile & Tablet
 -----------------------------
@@ -22,13 +22,13 @@ body{
     display:none;
 }
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 
 .all-elements{
 	position:absolute;
-	overflow-x:hidden!important;	
+	overflow-x:hidden!important;
 	width:100%;
 	height:100%;
 	min-height:100%;
@@ -41,22 +41,22 @@ body{
 /*Backgrounds */
 
 .bg1{
-    background-image:url(../images/pictures/1.jpg);   
+    background-image:url(../images/pictures/1.jpg);
     background-position:center center;
 }
 
 .bg2{
-    background-image:url(../images/pictures/2.jpg);   
+    background-image:url(../images/pictures/2.jpg);
     background-position:center center;
 }
 
 .bg3{
-    background-image:url(../images/pictures/3.jpg);   
+    background-image:url(../images/pictures/3.jpg);
     background-position:center center;
 }
 
 .bg4{
-    background-image:url(../images/pictures/4.jpg);   
+    background-image:url(../images/pictures/4.jpg);
     background-position:center center;
 }
 
@@ -118,7 +118,7 @@ body{
     -webkit-transform:scale(1, 1);
 }
 
-.footer-ball:hover{   
+.footer-ball:hover{
     color:#FFFFFF;
     transition:all 250ms ease-in-out;
     transform:scale(1.1, 1.1);
@@ -215,7 +215,7 @@ body{
 }
 
 .footer-menu a{
-    border-right:solid 1px rgba(255,255,255,0.08);  
+    border-right:solid 1px rgba(255,255,255,0.08);
     color:#FFFFFF;
     font-size:14px;
 }
@@ -282,9 +282,9 @@ body{
 
 .header a i{
     -ms-transform: rotate(0deg);
-    -webkit-transform: rotate(0deg); 
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
-    transition:all 250ms ease;    
+    transition:all 250ms ease;
 }
 
 .hide-header-left{
@@ -372,7 +372,7 @@ body{
     padding-top:22px;
     border-bottom:solid 1px #161b1f;
     -webkit-box-shadow: 0 1px 0 0 #3e444a;
-            box-shadow: 0 1px 0 0 #3e444a;
+    box-shadow: 0 1px 0 0 #3e444a;
 }
 
 .snap-drawer a:hover{
@@ -406,7 +406,7 @@ body{
 .center-socials{
     width:180px;
     margin-left:auto;
-    margin-right:auto;  
+    margin-right:auto;
     margin-bottom:0px;
     padding-top:10px;
     margin-top:-10px;
@@ -573,30 +573,30 @@ body{
 	.thumb-left img{
 		width:140px;
 		height:140px;
-		border-radius:150px;	
+		border-radius:150px;
 	}
-	
+
 	.thumb-left em{
-		line-height:28px;	
+		line-height:28px;
 	}
-	
+
 	.thumb-left strong{
-		padding-top:10px;	
+		padding-top:10px;
 	}
-	
+
 	.thumb-right img{
 		width:140px;
 		height:140px;
-		border-radius:150px;	
+		border-radius:150px;
 	}
-	
+
 	.thumb-right em{
-		line-height:28px;	
+		line-height:28px;
 	}
-	
+
 	.thumb-right strong{
-		padding-top:10px;	
-	}	
+		padding-top:10px;
+	}
 }
 
 
@@ -605,7 +605,7 @@ body{
 /*////////////////////*/
 
 .staff-item img{
-	border-radius:300px;	
+	border-radius:300px;
 	max-width:150px;
 	margin-left:auto;
 	margin-right:auto;
@@ -620,7 +620,7 @@ body{
 
 .staff-item h4{
 	text-align:center;
-	margin-top:20px;	
+	margin-top:20px;
 	font-size:16px;
 }
 
@@ -635,7 +635,7 @@ body{
 }
 
 .staff-item strong{
-	display:block;	
+	display:block;
 	font-weight:400;
 	text-align:center;
 	padding-left:20px;
@@ -650,7 +650,7 @@ body{
 .quote-slider h4{
 	font-family:'Source Sans Pro', sans-serif;
 	font-size:18px;
-	font-weight:300;	
+	font-weight:300;
 	width:87%;
 	text-align:center;
 	margin-left:auto;
@@ -660,7 +660,7 @@ body{
 
 .quote-slider a{
 	text-align:center;
-	margin-top:20px;	
+	margin-top:20px;
 }
 
 
@@ -837,17 +837,60 @@ body{
 }
 
 pre{
-        display: block;
-        padding: 9.5px;
-        margin: 0 0 10px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #333;
-        word-break: break-all;
-        word-wrap: break-word;
-        background-color: #f5f5f5;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #333;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.page {
+    font-size:12px;color:#666;PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px;
+}
+.page .num,.page .nowpage{margin-right:10px;}
+.page .current {
+    /*display: inline-block;*/
+    /*color:#FFF;*/
+    /*text-align:center;*/
+    /*background:#2E6AB1;color:#fff;BORDER-RIGHT: #9aafe5 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #9aafe5 1px solid; PADDING-LEFT: 5px; PADDING-BOTTOM: 2px; BORDER-LEFT: #9aafe5 1px solid; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: #9aafe5 1px solid; TEXT-DECORATION: none
+}
+.page .rows{
+    padding-right: 15px;
+    /*text-align: center;*/
+}
+.page a ,.page span.current {
+    border-right: #9aafe5 1px solid;
+    display: inline-block;
+    text-align:center;
+    PADDING-RIGHT: 5px;
+    BORDER-TOP: #9aafe5 1px solid;
+    PADDING-LEFT: 5px;
+    PADDING-BOTTOM: 2px;
+    BORDER-LEFT: #9aafe5 1px solid;
+    COLOR: #2e6ab1; MARGIN-RIGHT: 2px;
+    PADDING-TOP: 2px;
+    BORDER-BOTTOM: #9aafe5 1px solid;
+    TEXT-DECORATION: none
+}
+.page a:hover {
+    BORDER-RIGHT: #2b66a5 1px solid; BORDER-TOP: #2b66a5 1px solid; BORDER-LEFT: #2b66a5 1px solid; COLOR: #000; BORDER-BOTTOM: #2b66a5 1px solid; BACKGROUND-COLOR: lightyellow
+}
+.page a:active {
+    BORDER-RIGHT: #2b66a5 1px solid; BORDER-TOP: #2b66a5 1px solid; BORDER-LEFT: #2b66a5 1px solid; COLOR: #000; BORDER-BOTTOM: #2b66a5 1px solid; BACKGROUND-COLOR: lightyellow
+}
+.page .current,.page .num ,.page .prev,.page .next,.page span.current{
+    /*BORDER-RIGHT: navy 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: navy 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; BORDER-LEFT: navy 1px solid; COLOR: #fff; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: navy 1px solid; BACKGROUND-COLOR: #2e6ab1*/
+    border-radius:13px;
+    width:26px; height:26px;
+    /*background-color:#3498db;*/
+}
+.page span{
+    margin-bottom: 10px;
 }
 
 

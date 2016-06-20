@@ -10,10 +10,10 @@ Class CateWidget extends Controller {
 		$left = '';
 		$right ='';
 		foreach ($cate as  $k => $v) {
-			if( $k&1 == 1 ) {
-				$left .='<li><a href="/page_category"><i class="fa fa-angle-right"></i>'.$v['title'].'</a></li>';
+			if( $k%2 == 0 ) {
+				$left .='<li><a href="/category_'.$v['id'].'"><i class="fa fa-angle-right"></i>'.$v['title'].'</a></li>';
 			} else {
-				$right .= '<li><a href="#"><i class="fa fa-angle-right"></i>'.$v['title'].'</a></li>';
+				$right .= '<li><a href="/category_'.$v['id'].'"><i class="fa fa-angle-right"></i>'.$v['title'].'</a></li>';
 			}
 		}
 echo '<div class="widget container">

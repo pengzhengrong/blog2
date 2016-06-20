@@ -10,7 +10,7 @@
 // +----------------------------------------------------------------------
 namespace Think\Template\Driver;
 /**
- * Smarty模板引擎驱动 
+ * Smarty模板引擎驱动
  */
 class Smarty {
 
@@ -22,16 +22,22 @@ class Smarty {
      * @return void
      */
     public function fetch($templateFile,$var) {
+       /* if( file_exists($templateFile) ) {
+            P($templateFile);die;
+        } else {
+            $templateFile = substr($templateFile,strpos($templateFile, '_'));
+            P($templateFile);
+        }*/
         $templateFile   =   substr($templateFile,strlen(THEME_PATH));
         vendor('Smarty.Smarty#class');
         $tpl            =   new \Smarty();
         $tpl->caching       = C('TMPL_CACHE_ON');
         $tpl->template_dir  = THEME_PATH;
         $tpl->compile_dir   = CACHE_PATH ;
-        $tpl->cache_dir     = TEMP_PATH ;     
+        $tpl->cache_dir     = TEMP_PATH ;
         //  P(THEME_PATH);
         // P(CACHE_PATH);
-        // P(TEMP_PATH);   
+        // P(TEMP_PATH);
         // P(C('TMPL_ENGINE_CONFIG'));
         if(C('TMPL_ENGINE_CONFIG')) {
             $config  =  C('TMPL_ENGINE_CONFIG');

@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2016-06-19 14:31:44
+<?php /* Smarty version Smarty-3.1.6, created on 2016-06-20 11:39:26
          compiled from "./APP/Home/View/Index_page_blog.html" */ ?>
-<?php /*%%SmartyHeaderCode:20446658115765547f5f4375-30042537%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:156691315857674f82089468-83620159%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'b075bef5d6f6035d6924d852fc398a5217ca668a' => 
     array (
       0 => './APP/Home/View/Index_page_blog.html',
-      1 => 1466317902,
+      1 => 1466393643,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '20446658115765547f5f4375-30042537',
+  'nocache_hash' => '156691315857674f82089468-83620159',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.6',
-  'unifunc' => 'content_5765547f6a183',
+  'unifunc' => 'content_57674f821ab95',
   'variables' => 
   array (
     'rest' => 0,
@@ -26,7 +26,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5765547f6a183')) {function content_5765547f6a183($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include '/home/pzr/workspace/blog/ThinkPHP/Library/Vendor/Smarty/plugins/modifier.truncate.php';
+<?php if ($_valid && !is_callable('content_57674f821ab95')) {function content_57674f821ab95($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include '/home/pzr/workspace/blog/ThinkPHP/Library/Vendor/Smarty/plugins/modifier.truncate.php';
 if (!is_callable('smarty_modifier_date_format')) include '/home/pzr/workspace/blog/ThinkPHP/Library/Vendor/Smarty/plugins/modifier.date_format.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("Common/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>"blog"), 0);?>
 
@@ -70,7 +70,7 @@ $_smarty_tpl->tpl_vars['v']->_loop = true;
                     <p class="blog-post-date"><i class="fa fa-calendar"></i><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['v']->value['created'],"
 %m/%d/%G %T");?>
 </p>
-                    <p class="blog-post-more"><a href="<?php echo $_smarty_tpl->tpl_vars['v']->value['url'];?>
+                    <p class="blog-post-more"><a href="/blog_<?php echo $_smarty_tpl->tpl_vars['v']->value['id'];?>
 ">Read More<i class="fa fa-angle-right"></i></a></p>
                 </div>
                 <div class="decoration"></div>

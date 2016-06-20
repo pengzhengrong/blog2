@@ -1,31 +1,32 @@
-<?php /* Smarty version Smarty-3.1.6, created on 2016-06-19 15:13:43
+<?php /* Smarty version Smarty-3.1.6, created on 2016-06-20 18:53:08
          compiled from "./APP/Home/View/Index_blog.html" */ ?>
-<?php /*%%SmartyHeaderCode:182595408757657c6258c4c7-61787851%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:20344469725767518fefb7c0-78016136%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '6c2ef20cf40fedd494e120072fd733f759d3f689' => 
     array (
       0 => './APP/Home/View/Index_blog.html',
-      1 => 1466320421,
+      1 => 1466419983,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '182595408757657c6258c4c7-61787851',
+  'nocache_hash' => '20344469725767518fefb7c0-78016136',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.6',
-  'unifunc' => 'content_57657c62641aa',
+  'unifunc' => 'content_5767519007d51',
   'variables' => 
   array (
     'rest' => 0,
-    'v' => 0,
+    'prev' => 0,
+    'next' => 0,
     'cate' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_57657c62641aa')) {function content_57657c62641aa($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/pzr/workspace/blog/ThinkPHP/Library/Vendor/Smarty/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_5767519007d51')) {function content_5767519007d51($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/pzr/workspace/blog/ThinkPHP/Library/Vendor/Smarty/plugins/modifier.date_format.php';
 ?><?php echo $_smarty_tpl->getSubTemplate ("Common/header.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array('title'=>"blog"), 0);?>
 
 </head>
@@ -63,8 +64,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                     <p class="blog-post-date"><i class="fa fa-calendar"></i><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['rest']->value['created'],"
 %m/%d/%G %T");?>
 </p>
-                    <p class="blog-post-more"><a href="<?php echo $_smarty_tpl->tpl_vars['v']->value['url'];?>
-">Read More<i class="fa fa-angle-right"></i></a></p>
+                    <p class="blog-post-more">
+                        <a href="<?php if ($_smarty_tpl->tpl_vars['prev']->value['id']>0){?>/blog_<?php echo $_smarty_tpl->tpl_vars['prev']->value['id'];?>
+<?php }?>" style="padding-right: 20px;">Prev:<?php echo $_smarty_tpl->tpl_vars['prev']->value['title'];?>
+<i class="fa fa-angle-right"></i></a>
+                        <a href="<?php if ($_smarty_tpl->tpl_vars['next']->value['id']>0){?>/blog_<?php echo $_smarty_tpl->tpl_vars['next']->value['id'];?>
+<?php }?>">Next:<?php echo $_smarty_tpl->tpl_vars['next']->value['title'];?>
+<i class="fa fa-angle-right"></i></a>
+                    </p>
                 </div>
                 <div class="decoration"></div>
             </div>

@@ -28,7 +28,10 @@
                     </p>
                     <p class="blog-post-date"><i class="fa fa-calendar"></i>{$rest['created']|date_format:"
 %m/%d/%G %T"}</p>
-                    <p class="blog-post-more"><a href="{$v['url']}">Read More<i class="fa fa-angle-right"></i></a></p>
+                    <p class="blog-post-more">
+                        <a href="{if $prev['id'] > 0}/blog_{$prev['id']}{/if}" style="padding-right: 20px;">Prev:{$prev['title']}<i class="fa fa-angle-right"></i></a>
+                        <a href="{if $next['id'] > 0}/blog_{$next['id']}{/if}">Next:{$next['title']}<i class="fa fa-angle-right"></i></a>
+                    </p>
                 </div>
                 <div class="decoration"></div>
             </div>
