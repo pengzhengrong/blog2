@@ -57,7 +57,7 @@ Class SearchController extends Controller {
 	}*/
 
 	public function create(){ 
-		$fields = array('id','cat_id','status','title','content');
+		$fields = array('id','cat_id','status','title','content','created');
 		$rest = M('blog')->field($fields)->where('status=0')->select();
 		for( $i=0;$i<count($rest);$i++ ){
 			$temp = $this->dataclean( $rest[$i]['content'] );

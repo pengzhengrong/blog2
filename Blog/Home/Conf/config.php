@@ -18,5 +18,9 @@ return array(
 	'NAVIGATION' => 'zn_name', // nav show en or zn
 	// 'DEFAULT_CACHE_TIME' => 3600*24,
 
-	'ELASTIC_ON' => true,
+	'ELASTIC_ON' => false,
 );
+
+/*#! /bin/sh
+sudo /opt/lampp/lampp start
+/opt/elasticsearch-2.3.3/bin/elasticsearch -d*/

@@ -32,9 +32,10 @@ class LoginController extends Controller {
 
             $where = array(
                         'username' => I('username'),
-                        'passwd' => I('passwd',0,'md5')
+                        'password' => I('passwd',0,'md5')
             );
             $rest = M('user')->where($where)->fetchSql(false)->find();
+            // P($rest); die;
             $rest || notice( 'Login failed','/login',1 );
             session( 'username' , $rest['username']);
             session( C('USER_AUTH_KEY'), $rest['id'] );

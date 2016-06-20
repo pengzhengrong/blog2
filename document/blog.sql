@@ -66,6 +66,8 @@ create table `think_user`(
   key(`username`),
   UNIQUE(`username`)
 )engine=myisam default charset=utf8 auto_increment=1;
+insert into `think_user` values(0,'admin','123456','127.0.0.1',0,0);
+
 
 create table `think_navigation`(
   `id` int(11) not null  auto_increment,
@@ -78,6 +80,11 @@ create table `think_navigation`(
   `sort` int(6) not null default 0,
   primary key(`id`)
 )engine=myisam default charset=utf8 auto_increment=1;
+
+insert into `think_user` values(1,'NODE','节点管理',1,1,'/Rbac/node','green',1);
+insert into `think_user` values(2,'ACCESS','权限管理',1,1,'/Rbac/access','green',2);
+insert into `think_user` values(3,'ROLE','角色管理',1,1,'/Rbac/role','green',3);
+insert into `think_user` values(1,'USER','用户管理',1,1,'/User/index','green',4);
 
 create table `think_blog_comment`(
   `id` int(11)  unsigned auto_increment primary key ,

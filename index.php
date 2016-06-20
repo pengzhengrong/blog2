@@ -20,9 +20,26 @@ define('APP_DEBUG',true);
 // define('APP_NAME','Blog');
 
 // 定义应用目录
-define('APP_PATH','./Blog/');
-
+// echo '<pre>';
+// print_r($_SERVER);
+// print_r($_COOKIE);
+// print_r($);
+$_SERVER['HTTP_USER_AGENT'] = 'android';
+if( preg_match('/(android)|(iphone)/i', $_SERVER['HTTP_USER_AGENT']) ) {
+	define('APP_PATH','./APP/');
+	define('__PUBLIC__','/Public/App/Home');
+} else {
+	define('APP_PATH','./Blog/');
+}
+// echo APP_PATH;
+// define('APP_PATH','./APP/');
+// define('__PUBLIC__','/Public/App/Home');
 // define( 'DEFAULT_MODULE' , 'APP' );
+// echo '<pre>';
+// print_r($_SERVER);
+// print_r($_COOKIE);
+// print_r($_ENV);
+// print_r($);
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
