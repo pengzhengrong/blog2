@@ -21,6 +21,3 @@ return array(
 	'ELASTIC_ON' => false,
 );
 
-/*#! /bin/sh
-sudo /opt/lampp/lampp start
-/opt/elasticsearch-2.3.3/bin/elasticsearch -d*/

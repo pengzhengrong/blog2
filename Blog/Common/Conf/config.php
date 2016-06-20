@@ -35,4 +35,12 @@ return array(
 		'expire' => 3600*24,
 		'type' => 'db',
 		),
+	'DB_SQL_BUILD_CACHE' => true,
+	'DB_SQL_BUILD_QUEUE' => 'xcache',
+	'DB_SQL_BUILD_LENGTH' => 20, // SQL缓存的队列长度
+
+	// 'HTML_CACHE_ON'     =>    true, // 开启静态缓存
+	// 'HTML_CACHE_TIME'   =>    60,   // 全局静态缓存有效期（秒）
+	// 'HTML_FILE_SUFFIX'  =>    '.shtml', // 设置静态缓存文件后缀
+
 );
