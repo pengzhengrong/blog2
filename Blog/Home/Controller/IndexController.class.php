@@ -40,5 +40,10 @@ class IndexController extends CommonController {
           }
           $this->display();
      }
+
+     Public function test() {
+        $image = new \Home\Library\Image();
+        $image->imageHandler();
+     }
      
 }

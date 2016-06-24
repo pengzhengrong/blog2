@@ -15,7 +15,7 @@
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',true);
+define('APP_DEBUG',false);
 
 // define('APP_NAME','Blog');
 
@@ -31,6 +31,7 @@ if( preg_match('/(android)|(iphone)/i', $_SERVER['HTTP_USER_AGENT']) ) {
 } else {
 	define('APP_PATH','./Blog/');
 }
+// header('Location:http://www.baidu.com');
 // echo APP_PATH;
 // define('APP_PATH','./APP/');
 // define('__PUBLIC__','/Public/App/Home');

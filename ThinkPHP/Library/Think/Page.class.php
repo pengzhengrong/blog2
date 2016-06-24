@@ -76,7 +76,6 @@ class Page{
      */
     public function show() {
         if(0 == $this->totalRows) return '';
-
         /* 生成URL */
         $this->parameter[$this->p] = '[PAGE]';
         if( empty($this->url) ){
@@ -136,7 +135,8 @@ class Page{
                 }
             }else{
                 if($page > 0 && $this->totalPages != 1){
-                    $link_page .= '<span class="current">' . $page . '</span>';
+                    /*$link_page .= '<span class="current">' . $page . '</span>';*/
+                    $link_page .= '<a class="num current">' . $page . '</a>';
                 }
             }
         }

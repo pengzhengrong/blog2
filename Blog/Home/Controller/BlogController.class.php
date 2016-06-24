@@ -15,6 +15,7 @@ Class BlogController extends CommonController {
 	}
 
 	public function index() {
+		// G('blog_start');
 		if( I('cat_id') == 0 ){
 			$this->blog_cache();
 		}else{
@@ -22,6 +23,9 @@ Class BlogController extends CommonController {
 			$this->getBlog($where);
 		}
 		$this->get_cat_attr();
+		// G('blog_end');
+		// P(G('blog_start','blog_end','m'));
+		// P(G('blog_start','blog_end','6'));
 		$this->display();
 	}
 
@@ -92,14 +96,14 @@ Class BlogController extends CommonController {
 		}
 		//恢复删除
 		if( I('reback') != null ){
-			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0) );
+			$rest = M('blog')->save( array('id'=>I('id'),'status'=>0,'update_time'=>time()) );
 			$rest || $this->error( 'REBACK FAILED',1 );
 			$this->blog_cache();
 			$this->redirect('gc');
 		}
 		//逻辑删除
 		notice( 'Confirm to Delete Blog?' );
-		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1) );
+		$rest = M('blog')->save( array('id'=>I('id'),'status'=>1,'update_time'=>time()) );
 		$rest || $this->error( 'GC FAILED',1 );
 		// \Think\Log::write('logic delete blog'.I('id'),'INFO','File','/tmp/blog.log');
 		// \Think\Log::record('logic delete blog'.I('id'),'INFO');

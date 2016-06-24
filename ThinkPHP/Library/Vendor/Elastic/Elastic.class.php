@@ -16,12 +16,12 @@ Class Elastic {
 	}
 
 	public function get_conn(){
-		$host = C('DB_HOST');
-		$dbname = C('DB_NAME');
-		$user = C('DB_USER');
-		$passwd = C('DB_PWD');
+		$host = empty(C('DB_HOST'))?'127.0.0.1':C('DB_HOST');
+		$dbname = empty(C('DB_NAME'))?'test':C('DB_NAME');
+		$user = empty(C('DB_USER'))?'root':C('DB_USER');
+		$passwd = empty(C('DB_PWD'))?'':C('DB_PWD');
 		// $dsn = 'mysql:dbname=testdb;host=127.0.0.1';
-		$conn = new \PDO("mysqli:dbname=$dbname;host=$host;charset=utf8",$user,$passwd);
+		$conn = new \PDO("mysql:dbname=$dbname;host=$host;charset=utf8",$user,$passwd);
 		return $conn;
 	}
 	/**
@@ -109,6 +109,12 @@ Class Elastic {
 					$params['id'] = $rtn[$i][$v];
 					continue;
 				}
+				if( $v == 'status' ) {
+					$temp = $rtn[$i][$v];
+					if( $temp == 1 ) {
+						break;
+					}
+				}
 				$params['body'][$v] = $rtn[$i][$v];
 			}
 			/*$params['body'] = array(
@@ -118,10 +124,12 @@ Class Elastic {
 				); */
 			$params['index'] = empty($index)?C('DEFAULT_INDEX'):$index;
 			$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
-			// p($params); die;
+			// p($params); 
 		//Document will be indexed to log_index/log_type/autogenerate_id
+			logger('sync blog id:'.$params['id'],'blog_click.log');
 			$this->client->index($params);
 		}
+		logger('---------------------------------------------------------------------------------------','blog_click.log');
 		$databack = array(
 			'status'=>200,
 			'msg' => 'ok',
@@ -136,6 +144,8 @@ Class Elastic {
 	}
 
 	public function delete($params){
+		$params['type'] = empty($params['type'])?C('DEFAULT_TYPE'):$params['type'];
+		$params['index'] = empty($params['index'])?C('DEFAULT_INDEX'):$params['index'];
 		return $this->client->delete($params);
 	}
 
@@ -259,5 +269,59 @@ Class Elastic {
 		}
 		return $config;
 	}
+
 }
+
+/**
+ Public function syncBlog() {
+		// F('UPDATE_TIME',null);
+		// P(F('UPDATE_TIME'));
+		if( F('UPDATE_TIME') ) {
+			$update_time = F('UPDATE_TIME');
+		}
+		$fields = array('id' ,'title','content','created','cat_id','status');
+		if( $_GET['update_time'] ) {
+			$update_time = $_GET['update_time'];
+		}
+		if( empty($update_time) ) {
+			$update_time =  strtotime('2016-06-21 15:20');
+		}
+		// echo $update_time;die;
+		$sql = "select id,cat_id,title,content,created,status from think_blog where update_time>{$update_time} AND status=0";
+		$max_sql = "select max(update_time) as time from think_blog where update_time>={$update_time} AND status=0";
+		$index = 'test';
+		$type = 'think_blog';
+		$conn = $this->get_conn();
+		$stmt = $conn->query($sql);
+		$rtn = $stmt->fetchAll();
+		// P($rtn);die;
+		$rtnCount = count($rtn);
+		for($i=0;$i<$rtnCount;$i++){
+			$params = array();
+			foreach ($fields as $k => $v) {
+				if( $v == 'id' ){
+					$params['id'] = $rtn[$i][$v];
+					continue;
+				}
+				$params['body'][$v] = $rtn[$i][$v];
+			}
+			$params['index'] = $index;
+			$params['type'] = empty($type)?C('DEFAULT_TYPE'):$type;
+			$this->client->index($params);
+		}
+		$max_stmt = $conn->query($max_sql);
+		$max = $max_stmt->fetch();
+		F('UPDATE_TIME',$max['time']);
+		$databack = array(
+			'status'=>200,
+			'msg' => 'ok',
+			'data' => $rtnCount
+			);
+		 header('Content-Type:application/json; charset=utf-8');
+                	exit(json_encode($databack));
+	}
+ */
 ?>
+
+
+

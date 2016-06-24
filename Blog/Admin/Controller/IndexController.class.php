@@ -28,14 +28,14 @@ class IndexController extends CommonController {
 	}
 
 	public function content() {
-		 $where = array(
-		 	'status' => 0,
-		 	'cat_id' => I('id')
-		 	);
+		$where = array(
+			'status' => 0,
+			'cat_id' => I('id')
+			);
 		 // $this->blog = M('blog')->where($where)->find();
-		 $this->blog = D('Home/BlogRelation')->relation('attr')->where($where)->find();
+		$this->blog = D('Home/BlogRelation')->relation('attr')->where($where)->find();
 		 // p($this->blog); die;
-		 $this->display();
+		$this->display();
 	}
 
 	public function attr(){

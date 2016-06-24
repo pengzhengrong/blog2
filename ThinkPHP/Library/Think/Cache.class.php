@@ -36,6 +36,7 @@ class Cache {
      * @return object
      */
     public function connect($type='',$options=array()) {
+        // P($type);
         if(empty($type))  $type = C('DATA_CACHE_TYPE');
         $class  =   strpos($type,'\\')? $type : 'Think\\Cache\\Driver\\'.ucwords(strtolower($type));            
         if(class_exists($class))

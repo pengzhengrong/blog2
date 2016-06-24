@@ -64,7 +64,6 @@ class Dispatcher {
                     }
                 }                
             }
-            // my_log( 'rule' , $rule );
 
             if(!empty($rule)) {
                 // 子域名部署规则 '子域名'=>array('模块名[/控制器名]','var1=a&var2=b');

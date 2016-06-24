@@ -4185,6 +4185,7 @@ table tr:hover td{
 
 .blog-post-text{
     margin-bottom:20px;
+    word-wrap: break-word;
 }
 
 .blog-post-date i{
@@ -4631,6 +4632,10 @@ table tr:hover td{
 
 .calendar-hour em i{
     margin-right:10px;
+}
+
+.fa-angle-left{
+	padding-right: 10px;
 }
 
 

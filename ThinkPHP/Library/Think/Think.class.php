@@ -303,7 +303,7 @@ class Think {
             //否则定向到错误页面
             $error_page         = C('ERROR_PAGE');
             if (!empty($error_page)) {
-                redirect($error_page);
+                echo "<SCRIPT LANGUAGE=\"JavaScript\">location.href='$error_page'</SCRIPT>";
             } else {
                 $message        = is_array($error) ? $error['message'] : $error;
                 $e['message']   = C('SHOW_ERROR_MSG')? $message : C('ERROR_MESSAGE');

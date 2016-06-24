@@ -838,8 +838,8 @@ body{
 
 pre{
     display: block;
-    padding: 9.5px;
-    margin: 0 0 10px;
+    /*padding: 9.5px;*/
+    /*margin: 0 0 10px;*/
     font-size: 13px;
     line-height: 1.42857143;
     color: #333;
@@ -852,7 +852,7 @@ pre{
 .page {
     font-size:12px;color:#666;PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px;
 }
-.page .num,.page .nowpage{margin-right:10px;}
+.page .num{margin-right:10px;}
 .page .current {
     /*display: inline-block;*/
     /*color:#FFF;*/
@@ -863,7 +863,7 @@ pre{
     padding-right: 15px;
     /*text-align: center;*/
 }
-.page a ,.page span.current {
+.page a {
     border-right: #9aafe5 1px solid;
     display: inline-block;
     text-align:center;
@@ -872,71 +872,30 @@ pre{
     PADDING-LEFT: 5px;
     PADDING-BOTTOM: 2px;
     BORDER-LEFT: #9aafe5 1px solid;
-    COLOR: #2e6ab1; MARGIN-RIGHT: 2px;
+    COLOR: #2e6ab1;
+    MARGIN-RIGHT: 2px;
     PADDING-TOP: 2px;
     BORDER-BOTTOM: #9aafe5 1px solid;
     TEXT-DECORATION: none
 }
 .page a:hover {
-    BORDER-RIGHT: #2b66a5 1px solid; BORDER-TOP: #2b66a5 1px solid; BORDER-LEFT: #2b66a5 1px solid; COLOR: #000; BORDER-BOTTOM: #2b66a5 1px solid; BACKGROUND-COLOR: lightyellow
+    BORDER-RIGHT: #2b66a5 1px solid;
+    BORDER-TOP: #2b66a5 1px solid;
+    BORDER-LEFT: #2b66a5 1px solid;
+    COLOR: #000;
+    BORDER-BOTTOM: #2b66a5 1px solid;
+    /*BACKGROUND-COLOR: gray;*/
 }
 .page a:active {
     BORDER-RIGHT: #2b66a5 1px solid; BORDER-TOP: #2b66a5 1px solid; BORDER-LEFT: #2b66a5 1px solid; COLOR: #000; BORDER-BOTTOM: #2b66a5 1px solid; BACKGROUND-COLOR: lightyellow
 }
-.page .current,.page .num ,.page .prev,.page .next,.page span.current{
+.page .num ,.page .prev,.page .next{
     /*BORDER-RIGHT: navy 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: navy 1px solid; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; BORDER-LEFT: navy 1px solid; COLOR: #fff; MARGIN-RIGHT: 2px; PADDING-TOP: 2px; BORDER-BOTTOM: navy 1px solid; BACKGROUND-COLOR: #2e6ab1*/
     border-radius:13px;
     width:26px; height:26px;
     /*background-color:#3498db;*/
 }
-.page span{
-    margin-bottom: 10px;
+
+.page .current{
+    background-color:yellow;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

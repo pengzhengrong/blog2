@@ -9,5 +9,6 @@ return array(
 		'/^(\w+)$/' => 'Home/Index/:1',
 		),
 	'CACHE_TIME' => 60,
-	'SHOW_PAGE_TRACE' => true,
+	'ERROR_PAGE' => 'http://blog.com:8890/page_error.html',
+	// 'SHOW_PAGE_TRACE' => true,
 );

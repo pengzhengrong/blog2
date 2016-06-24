@@ -12,16 +12,16 @@ Class SearchController extends Controller {
 		$this->client = new \Elasticsearch\Client($param);
 		$this->elastic = new \Library\Elastic($param);
 	}
-	
+
 	public function index() {
 		$this->module_name = MODULE_NAME;
 		$this->display();
 	}
 
-	public function search(){ 
-		//Elastic search php client 
+	public function search(){
+		//Elastic search php client
 		$search_key = I('search_key');
-		
+
 		$params = array(
 			'index' => 'test',
 			'type' => 'think_blog',
@@ -39,12 +39,12 @@ Class SearchController extends Controller {
 					'fields' => array( 'content' => (object)array() )
 					)*/
 					)
-			); 
+			);
 
-		$rtn = $this->client->search($params); 
-		// var_dump($rtn); 
+		$rtn = $this->client->search($params);
+		// var_dump($rtn);
 		return $rtn;
-	} 
+	}
 
 	/**
 	 * @return 创建索引
@@ -56,11 +56,22 @@ Class SearchController extends Controller {
 		$this->elastic->create_index($sql , $fields , $params);
 	}*/
 
-	public function create(){ 
+	public function create(){
 		$fields = array('id','cat_id','status','title','content','created');
 		$rest = M('blog')->field($fields)->where('status=0')->select();
 		for( $i=0;$i<count($rest);$i++ ){
 			$temp = $this->dataclean( $rest[$i]['content'] );
+			$rest[$i]['content'] = $temp;
+		}
+		// p($rest);die;
+		$this->elastic->create_index_by_rest( $rest , $fields );
+	}
+
+	public function syncBlog(){
+		$fields = array('id','cat_id','status','title','content','created');
+		$rest = M('blog')->field($fields)->where('status=0')->select();
+		for( $i=0;$i<count($rest);$i++ ){
+			$temp = dataclean( $rest[$i]['content'] );
 			$rest[$i]['content'] = $temp;
 		}
 		// p($rest);die;

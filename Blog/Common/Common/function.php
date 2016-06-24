@@ -91,3 +91,8 @@ function cutHighlightContent( $content ,$len = 100){
 	// p($content);die;
 	return $content;
 }
+
+function logger($msg , $file='blog.log') {
+	\Think\Log::write($msg,'INFO','File','/home/pzr/workspace/blog/log/'.$file);
+}
+

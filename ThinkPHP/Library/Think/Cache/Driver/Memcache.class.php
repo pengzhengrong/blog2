@@ -22,6 +22,7 @@ class Memcache extends Cache {
      * @access public
      */
     function __construct($options=array()) {
+        // P($options);die;
         if ( !extension_loaded('memcache') ) {
             E(L('_NOT_SUPPORT_').':memcache');
         }

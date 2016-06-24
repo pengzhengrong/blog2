@@ -1,43 +1,36 @@
 {include file="Common/header.html" title="blog"}
 </head>
 <body>
-{include file="Common/loader.html"}
-<div class="all-elements">
-{include file="Common/left.html"}
+    {include file="Common/loader.html"}
+    <div class="all-elements">
+        {include file="Common/left.html"}
 
-    <div class="header">
-        <a href="#" class="main-logo"></a>
-        <a href="#" class="open-menu"><i class="fa fa-navicon"></i></a>
-        <a href="#" class="open-call"><i class="fa fa-phone"></i></a>
-        <a href="#" class="open-mail"><i class="fa fa-envelope-o"></i></a>
-    </div>
-
-    <a href="#" class="footer-ball"><i class="fa fa-navicon"></i></a>
-
-    <!-- Page Content-->
-    <div id="content" class="snap-content">
-        <div class="header-clear"></div>
-        <div class="content">
-
-            <div class="blog-posts">
-                <div class="blog-post">
-                    <!-- <a class="blog-post-image" href="#"><img src="{$smarty.const.__PUBLIC__}/images/pictures/3ww.jpg" alt="img"></a> -->
-                    <h3 class="blog-post-title">{$rest['title']}</h3>
-                    <p class="blog-post-text">
-                       {$rest['content']}
-                    </p>
-                    <p class="blog-post-date"><i class="fa fa-calendar"></i>{$rest['created']|date_format:"
-%m/%d/%G %T"}</p>
+        <!-- header -->
+        {include file="Common/top.html"}
+        <a href="#" class="footer-ball"><i class="fa fa-navicon"></i></a>
+        <!-- Page Content-->
+        <div id="content" class="snap-content">
+            <div class="header-clear"></div>
+            <div class="content">
+                <div class="blog-posts">
+                    <div class="blog-post">
+                        <!-- <a class="blog-post-image" href="#"><img src="{$smarty.const.__PUBLIC__}/images/pictures/3ww.jpg" alt="img"></a> -->
+                        <h3 class="blog-post-title">{$rest['title']}</h3>
+                        <p class="blog-post-text">
+                         {$rest['content']}
+                     </p>
+                     <p class="blog-post-date"><i class="fa fa-calendar"></i>{$rest['created']|date_format:"
+                        %m/%d/%G %T"}</p>
+                    </div>
                     <p class="blog-post-more">
-                        <a href="{if $prev['id'] > 0}/blog_{$prev['id']}{/if}" style="padding-right: 20px;">Prev:{$prev['title']}<i class="fa fa-angle-right"></i></a>
+                        <a href="{if $prev['id'] > 0}/blog_{$prev['id']}{/if}" style="padding-right: 20px;"><i class="fa fa-angle-left"></i>Prev:{$prev['title']}</a>
                         <a href="{if $next['id'] > 0}/blog_{$next['id']}{/if}">Next:{$next['title']}<i class="fa fa-angle-right"></i></a>
                     </p>
+                    <!-- <div class="decoration"></div> -->
                 </div>
-                <div class="decoration"></div>
-            </div>
 
-         <!-- search -->
-         {include file="Common/search.html"}
+                <!-- search -->
+                {include file="Common/search.html"}
                <!--  <div class="widget container">
                     <h4>Recent Works</h4>
                     <p>
@@ -51,11 +44,11 @@
                         <li><a href="#"><img src="{$smarty.const.__PUBLIC__}/images/pictures/4s.jpg" alt="img"/></a></li>
                     </ul>
                 </div> -->
-              <!-- category -->
-              {W('Cate/cate',array($cate))}
-        </div>
-        <!-- Page Footer-->
-       {include file="Common/footer.html"}
+                <!-- category -->
+                {W('Cate/cate',array($cate))}
+            </div>
+            <!-- Page Footer-->
+            {include file="Common/footer.html"}
 
-</body>
+        </body>
 
