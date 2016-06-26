@@ -7,7 +7,8 @@
                 "cat_id":{"type":"integer","store":"yes","index":"not_analyzed"},
                 "title":{"type":"string","store":"yes"},
                 "content":{"type":"string","store":"yes","index_options":"offsets"},
-                "status":{"type":"integer","store":"yes","index":"not_analyzed"}
+                "status":{"type":"integer","store":"yes","index":"not_analyzed"},
+                "created":{"type":"integer","store":"yes","index":"analyzed"}
             }
         }
     }}'

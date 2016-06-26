@@ -34,7 +34,7 @@ define('HTTP_HOST',$_SERVER['HTTP_HOST']);
 // print_r($_SERVER);
 
 
-$_SERVER['HTTP_USER_AGENT'] = 'android';
+// $_SERVER['HTTP_USER_AGENT'] = 'android';
 if( preg_match('/(android)|(iphone)/i', $_SERVER['HTTP_USER_AGENT']) ) {
 	define('APP_PATH','./APP/');
 	define('__PUBLIC__','/Public/App/Home');
@@ -46,23 +46,3 @@ if( preg_match('/(android)|(iphone)/i', $_SERVER['HTTP_USER_AGENT']) ) {
 require './ThinkPHP/ThinkPHP.php';
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单
-
-
-/**
- $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-        
-$token = TOKEN;
-$tmpArr = array($token, $timestamp, $nonce);
-sort($tmpArr, SORT_STRING);
-$tmpStr = implode( $tmpArr );
-$tmpStr = sha1( $tmpStr );
-
-if( $tmpStr == $signature ){
-return true;
-}else{
-return false;
-}
-die;
-*/

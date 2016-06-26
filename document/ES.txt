@@ -1,12 +1,16 @@
+#######################
+#    old elastic not used                    #
+#######################
 // create index test_v1
- curl -XPOST http://localhost:9202/test_v1 -d '{
+ curl -XPOST http://localhost:9200/test_v1 -d '{
     "mappings":{
         "think_blog":{
             "properties":{
                 "id":{"type":"integer","store":"yes"},
                 "title":{"type":"string","store":"yes"},
                 "content":{"type":"string","store":"yes","index_options":"offsets"},
-                "status":{"type":"integer","store":"yes","index":"not_analyzed"}
+                "status":{"type":"integer","store":"yes","index":"not_analyzed"},
+                "created":{"type":"integer","store":"yes","index":"analyzed"}
             }
         }
     }}'
@@ -14,7 +18,7 @@
 --------------------------------------------------------------------------
 // add all content and then stop
   
-   curl -XPUT 'http://localhost:9202/_river/think_blog/_meta' -d '{
+   curl -XPUT 'http://localhost:9200/_river/think_blog/_meta' -d '{
     "type": "jdbc",
     "jdbc": {
         "driver": "com.mysql.jdbc.Driver",
