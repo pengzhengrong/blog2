@@ -56,7 +56,7 @@ class IndexController extends CommonController {
 	 	$cate = M('category')->cache(true,CACHE_TIME)->field(array('id','pid'))->where('status=0')->select();
 	 	// P($cate);
 	 	$ids = getChildrens($cate,$id);
-	 	// P($ids);die;
+	 	P($ids);
 	 	$count = M('blog')->where("status=0 AND cat_id in ($ids)")->count();
 	 	$pageSize = I('size',C('PAGE_SIZE'),'intval');
 	 	$url = '/'.ACTION_NAME."_$id".'?p='.urlencode('[PAGE]');
@@ -71,15 +71,18 @@ class IndexController extends CommonController {
 
 	 Public function blog() {
 	 	$id = I('id',0,'intval');
-	 	// P(cookie('READ_BLOG_TYPE'));
+	 	P($id);
+	 	P(cookie('READ_BLOG_TYPE'));
 	 	// P(session('READ_BLOG_TYPE'));die;
 	 	$this->rest = M('blog')->find($id);
 	 	$cacheKey = "BLOG_ID_{$id}";
 	 	S($cacheKey,S($cacheKey)+1,24*3600);
 	 	// P(S($cacheKey));
-	 	// P($rest);
+	 	P($this->rest['id']);
 	 	$this->get_next_prev($id , cookie('READ_BLOG_TYPE'));
-	 	$this->display();
+	 	$url=md5($_SERVER['REQUEST_URI']);
+	 	P($_SERVER['REQUEST_URI']);
+	 	$this->display('Index_blog','','','',$url);
 	 }
 
 	 Private function getCategory() {
@@ -148,13 +151,15 @@ class IndexController extends CommonController {
 	 		$rest = M('blog')->cache(true,CACHE_TIME)->field(array('id','title'))->where('status=0')->order('created desc')->select();
 	 		break;
 	 	}
-	 	// P($rest);die;
+	 	P($rest);
 	 	foreach ($rest as $k => $v) {
 	 		if( $v['id'] == $id ) {
 	 			$this->prev = $rest[$k-1];
 	 			$this->next = $rest[$k+1];
 	 		}
 	 	}
+	 	P($this->prev);
+	 	P($this->next);
 	 	// return $rest;
 	 	return;
 	 }
